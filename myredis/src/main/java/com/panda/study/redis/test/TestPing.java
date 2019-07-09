@@ -1,4 +1,4 @@
-package com.panda.redis.test;
+package com.panda.study.redis.test;
 
 import redis.clients.jedis.Jedis;
 
