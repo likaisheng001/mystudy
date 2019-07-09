@@ -1,4 +1,4 @@
-package com.panda.java.algorithm;
+package com.panda.study.java.algorithm;
 
 public class SparseArray {
     public static void main(String[] args) {

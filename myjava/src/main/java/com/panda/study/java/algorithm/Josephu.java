@@ -1,4 +1,4 @@
-package com.panda.java.algorithm;
+package com.panda.study.java.algorithm;
 
 /**
  * Created by Administrator on 2019/7/6.

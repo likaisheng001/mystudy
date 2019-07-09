@@ -1,4 +1,4 @@
-package com.panda.java.thread;
+package com.panda.study.java.thread;
 
 import java.util.concurrent.*;
 

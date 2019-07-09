@@ -1,4 +1,4 @@
-package com.panda.java.aop;
+package com.panda.study.java.aop;
 
 /**
  * Created by Administrator on 2019/6/30.

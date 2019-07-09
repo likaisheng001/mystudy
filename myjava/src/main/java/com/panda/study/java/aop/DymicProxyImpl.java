@@ -1,4 +1,4 @@
-package com.panda.java.aop;
+package com.panda.study.java.aop;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
