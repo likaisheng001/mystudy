@@ -12,5 +12,6 @@
     <modules>
         <module>myredis</module>
         <module>myjava</module>
+        <module>mysring</module>
     </modules>
 </project>
