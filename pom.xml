@@ -11,6 +11,5 @@
 
     <modules>
         <module>myredis</module>
-        <module>myjava</module>
     </modules>
 </project>
