@@ -1,4 +1,4 @@
-package com.panda.study.study.java.algorithm;
+package com.panda.study.java.algorithm.stack;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.panda.study.study.java.thread;
+package com.panda.study.java.thread;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

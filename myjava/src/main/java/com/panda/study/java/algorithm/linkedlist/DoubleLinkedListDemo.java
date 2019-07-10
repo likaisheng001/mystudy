@@ -1,4 +1,4 @@
-package com.panda.study.study.java.algorithm;
+package com.panda.study.java.algorithm.linkedlist;
 
 public class DoubleLinkedListDemo {
     public static void main(String[] args) {
