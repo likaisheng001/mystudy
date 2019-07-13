@@ -4,17 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-/**
- * Created by Administrator on 2019/7/13.
- */
 public class ShellSort {
     public static void main(String[] args) {
 //        int[] arr = {8,9,1,7,2,3,5,4,6,0};
 //        shellSort2(arr);
 //        shellSort(arr);
 
-        int[] arr = new int[80000];
-        for (int i = 0; i < 80000; i++) {
+        int[] arr = new int[8000000];
+        for (int i = 0; i < 8000000; i++) {
             arr[i] = (int)(Math.random()*8000000); //生成一个[0,8000000)的随机数
         }
         Date date1 = new Date();
