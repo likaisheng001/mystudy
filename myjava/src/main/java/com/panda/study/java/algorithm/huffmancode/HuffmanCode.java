@@ -9,15 +9,15 @@ import java.util.*;
 public class HuffmanCode {
     public static void main(String[] args) {
         //测试压缩文件 黑白图片压缩效果更好，彩色图片压缩效果不好
-//        String srcFile = "d://src.bmp";
-//        String dstFile = "d://dst.zip";
-//        zipFile(srcFile, dstFile);
-//        System.out.println("压缩文件成功...");
+        String srcFile = "d://src.bmp";
+        String dstFile = "d://dst.zip";
+        zipFile(srcFile, dstFile);
+        System.out.println("压缩文件成功...");
         //测试解压文件
-        String zipFile = "d://dst.zip";
-        String dstFile = "d://src2.bmp";
-        unZipFile(zipFile,dstFile);
-        System.out.println("解压成功...");
+//        String zipFile = "d://dst.zip";
+//        String dstFile = "d://src2.bmp";
+//        unZipFile(zipFile,dstFile);
+//        System.out.println("解压成功...");
         /*
         String content = "i like like like java do you like a java";
         byte[] contentBytes = content.getBytes();
