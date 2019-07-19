@@ -5,7 +5,7 @@ package com.panda.study.java.algorithm.tree.binarysorttree;
  */
 public class BinarySortTreeDemo {
     public static void main(String[] args) {
-        int arr[] = {7, 3, 10, 12, 5, 1, 9,2};
+        int arr[] = {7, 3, 10, 12, 5, 1, 9};
         BinarySortTree binarySortTree = new BinarySortTree();
         //循环的添加结点到二叉排序树
         for (int i = 0; i < arr.length; i++) {
@@ -15,10 +15,17 @@ public class BinarySortTreeDemo {
         System.out.println("中序遍历二叉排序树");
         binarySortTree.infixOrder();
         //测试一下删除叶子节点
-//        binarySortTree.delNode(2);
+        binarySortTree.delNode(2);
+        binarySortTree.delNode(5);
+        binarySortTree.delNode(9);
         binarySortTree.delNode(12);
+        binarySortTree.delNode(7);
+        binarySortTree.delNode(3);
+        binarySortTree.delNode(10);
+        binarySortTree.delNode(1);
         System.out.println("删除节点后...");
         binarySortTree.infixOrder();
+        System.out.println("get root="+binarySortTree.getRoot());
     }
 }
 //创建二叉排序树
@@ -32,6 +39,11 @@ class BinarySortTree{
             return root.search(value);
         }
     }
+
+    public Node getRoot() {
+        return root;
+    }
+
     //查找父结点
     public Node searchParent(int value){
         if (root == null){
@@ -39,6 +51,25 @@ class BinarySortTree{
         }else {
             return root.searchParent(value);
         }
+
+    }
+    //编写方法
+    //1.返回的是以node为根节点的二叉排序树的最小节点的值
+    //2.删除node为根节点的二叉排序树的最小节点
+    /**
+     * @param node 传入的节点(当做二叉排序树的根节点)
+     * @return 返回的是以node为根节点的二叉排序树的最小节点的值
+     */
+    public int delRightTreeMin(Node node){
+        Node target = node;
+        //循环的查找左子节点，就会找到最小值
+        while (target.left != null){
+            target = target.left;
+        }
+        //这是target就指向了最小节点
+        //删除最小节点
+        delNode(target.value);
+        return target.value;
     }
     //删除节点
     public void delNode(int value){
@@ -58,7 +89,7 @@ class BinarySortTree{
             }
             //去找到targetNode的父结点
             Node parent = searchParent(value);
-            //如果要删除的是叶子节点
+            //第一种情况：如果要删除的是叶子节点
             if (targetNode.left == null && targetNode.right == null){
                 //判断targetNode是父结点的左子节点还是右子节点
                 if (parent.left != null && parent.left.value == targetNode.value){
@@ -66,9 +97,36 @@ class BinarySortTree{
                 }else if (parent.right != null && parent.right.value == targetNode.value){
                     parent.right = null;
                 }
+            //第三种情况：删除有两颗子树的情况
+            }else if (targetNode.left != null && targetNode.right != null){
+                int minVal = delRightTreeMin(targetNode.right);
+                targetNode.value = minVal;
+                //第二种情况：删除只有一颗子树的情况
+            }else {
+                //如果要删除的结点有左子节点
+                if (targetNode.left != null){
+                    if (parent != null){
+                        //如果targetNode是parent的左子节点
+                        if (parent.left.value == value){
+                            parent.left = targetNode.left;
+                        }else {//targetNode是parent的右子节点
+                            parent.right = targetNode.left;
+                        }
+                    }else {
+                        root = targetNode.left;
+                    }
+                }else {//要删除的结点有右子节点
+                    if (parent != null){
+                        if (parent.left.value == value){
+                            parent.left = targetNode.right;
+                        }else {//如果targetNode是parent的右子节点
+                            parent.right = targetNode.right;
+                        }
+                    }else {
+                        root = targetNode.right;
+                    }
+                }
             }
-            //2.找到targetNode 的 父结点 parent
-            Node node = searchParent(value);
         }
     }
     //添加节点的方法
