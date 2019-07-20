@@ -2,6 +2,7 @@ package com.panda.study.java.algorithm.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * Created by Administrator on 2019/7/20.
@@ -14,8 +15,8 @@ public class Graph {
     private boolean[] isVisited;
     public static void main(String[] args) {
         //测试一把图是否创建ok
-        int n = 5; //节点的个数
-        String vertexValue[] = {"A","B","C","D","E"};
+        int n = 8; //节点的个数
+        String vertexValue[] = {"1","2","3","4","5","6","7","8"};
         //创建图对象
         Graph graph = new Graph(n);
         //循环的添加顶点
@@ -23,16 +24,27 @@ public class Graph {
             graph.insertVertex(value);
         }
         //添加边A-B A-C B-C B-D B-E
-        graph.insertEdge(0,1,1);
-        graph.insertEdge(0,2,1);
-        graph.insertEdge(1,2,1);
-        graph.insertEdge(1,3,1);
-        graph.insertEdge(1,4,1);
+//        graph.insertEdge(0,1,1);
+//        graph.insertEdge(0,2,1);
+//        graph.insertEdge(1,2,1);
+//        graph.insertEdge(1,3,1);
+//        graph.insertEdge(1,4,1);
+        graph.insertEdge(0, 1, 1);
+        graph.insertEdge(0, 2, 1);
+        graph.insertEdge(1, 3, 1);
+        graph.insertEdge(1, 4, 1);
+        graph.insertEdge(3, 7, 1);
+        graph.insertEdge(4, 7, 1);
+        graph.insertEdge(2, 5, 1);
+        graph.insertEdge(2, 6, 1);
+        graph.insertEdge(5, 6, 1);
         //显示一把邻结矩阵
         graph.showGraph();
         //测试一把，我们的dfs遍历是否ok
         System.out.println("深度遍历");
         graph.dfs();//A->B->C->D->E
+//        System.out.println("广度优先");
+//        graph.bfs();//A->B->C->D->E
     }
     public Graph(int n){
         //初始化矩阵和vertexList
@@ -40,6 +52,14 @@ public class Graph {
         vertexList = new ArrayList<String>(n);
         numOfEdges = 0;
         isVisited = new boolean[n];
+    }
+    //遍历所有的节点，都进行广度优先搜索
+    public void bfs(){
+        for (int i = 0; i < getNumOfVertex(); i++) {
+            if (!isVisited[i]){
+                bfs(isVisited,i);
+            }
+        }
     }
     //得到第一个邻接节点的下标w
     /**
@@ -54,6 +74,37 @@ public class Graph {
             }
         }
         return -1;
+    }
+    //对一个节点进行广度优先遍历的方法
+    private void bfs(boolean[] isVisited,int i){
+        int u;//表示队列的头结点对应的下标
+        int w;//邻接节点w
+        //队列,记录节点访问的顺序
+        LinkedList queue = new LinkedList();
+        //访问节点，输出节点信息
+        System.out.print(getValueByIndex(i) + "=>");
+        //标记为已访问
+        isVisited[i] = true;
+        //将节点加入队列
+        queue.addLast(i);
+        while (!queue.isEmpty()){
+            //取出队列的头结点下标
+            u = (Integer)queue.removeFirst();
+            //得到第一个邻接节点的下标w
+            w = getFirstNeighbor(u);
+            while (w != -1){//找到
+                //是否访问过
+                if (!isVisited[w]){
+                    System.out.print(getValueByIndex(w) + "=>");
+                    //标记已经访问
+                    isVisited[w] = true;
+                    //入队
+                    queue.addLast(w);
+                }
+                //以u为前驱点，找w后面的下一个邻接点
+                w = getNextNeighbor(u,w);//体现出我们的广度优先
+            }
+        }
     }
     //深度优先遍历算法
     //i 第一次就是0
