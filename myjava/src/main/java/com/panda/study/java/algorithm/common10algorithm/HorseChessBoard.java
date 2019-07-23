@@ -19,8 +19,8 @@ public class HorseChessBoard {
         //测试骑士周游算法是否正确
         X = 8;
         Y = 8;
-        int row = 1;//马儿初始位置的行，从1开始编号
-        int column = 1;//马儿初始位置的列，从1开始编号
+        int row = 8;//马儿初始位置的行，从1开始编号
+        int column = 8;//马儿初始位置的列，从1开始编号
         //创建棋盘
         int[][] chessboard = new int[X][Y];
         visited = new boolean[X*Y];//初始值都是false
@@ -75,7 +75,6 @@ public class HorseChessBoard {
     }
     /**
      * 功能:根据当前位置，计算马儿还能走哪些位置，并放入到一个集合中(ArrayList), 最多有8个位置
-     *
      * @param curPoint
      * @return
      */
@@ -84,36 +83,40 @@ public class HorseChessBoard {
         ArrayList<Point> ps = new ArrayList<>();
         //创建一个Point
         Point p1 = new Point();
+        //按照56701234的顺序进行遍历，不使用贪心算法进行优化，起点(0,0).要花近35秒
+        //按照43210765的顺序进行遍历， 不使用贪心算法进行优化，起点(0,0).要花1秒
+        //如是交换顺序后，时间也会交换
+
         //表示马儿可以走5这个位置
-        if ((p1.x = curPoint.x - 2) >= 0 && (p1.y = curPoint.y + 1) < Y) {
+        if ((p1.x = curPoint.x - 2) >= 0 && (p1.y = curPoint.y - 1) >= 0){
             ps.add(new Point(p1));
         }
         //表示马儿可以走6这个位置
-        if ((p1.x = curPoint.x - 1) >= 0 && (p1.y = curPoint.y + 2) < Y) {
+        if ((p1.x = curPoint.x - 1) >= 0 && (p1.y = curPoint.y - 2) >= 0){
             ps.add(new Point(p1));
         }
         //表示马儿可以走7这个位置
-        if ((p1.x = curPoint.x + 1) < X && (p1.y = curPoint.y + 2) < Y) {
+        if ((p1.x = curPoint.x + 1) < X && (p1.y = curPoint.y - 2) >= 0){
             ps.add(new Point(p1));
         }
         //表示马儿可以走0这个位置
-        if ((p1.x = curPoint.x + 2) < X && (p1.y = curPoint.y + 1) < Y) {
+        if ((p1.x = curPoint.x + 2) < X && (p1.y = curPoint.y - 1) >= 0){
             ps.add(new Point(p1));
         }
         //表示马儿可以走1这个位置
-        if ((p1.x = curPoint.x + 2) < X && (p1.y = curPoint.y - 1) >= 0) {
+        if ((p1.x = curPoint.x + 2) < X && (p1.y = curPoint.y + 1) < Y){
             ps.add(new Point(p1));
         }
         //表示马儿可以走2这个位置
-        if ((p1.x = curPoint.x + 1) < X && (p1.y = curPoint.y - 2) >= 0) {
+        if ((p1.x = curPoint.x + 1) < X && (p1.y = curPoint.y + 2) < Y){
             ps.add(new Point(p1));
         }
         //表示马儿可以走3这个位置
-        if ((p1.x = curPoint.x - 1) >= 0 && (p1.y = curPoint.y - 2) >= 0) {
+        if ((p1.x = curPoint.x - 1) >= 0 && (p1.y = curPoint.y + 2) < Y){
             ps.add(new Point(p1));
         }
         //表示马儿可以走4这个位置
-        if ((p1.x = curPoint.x - 2) >= 0 && (p1.y = curPoint.y - 1) >= 0) {
+        if ((p1.x = curPoint.x - 2) >= 0 && (p1.y = curPoint.y + 1) < Y){
             ps.add(new Point(p1));
         }
         return ps;
