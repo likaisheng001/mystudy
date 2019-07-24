@@ -1,4 +1,4 @@
-package com.panda.study.principle;
+package com.panda.study.principle.singleresponsibility;
 
 /**
  * Created by Administrator on 2019/7/24.
