@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
+ * 需要思考的问题，贪心算法是如何进行优化的，其具体原理是什么？
  * Created by Administrator on 2019/7/22.
  */
 public class HorseChessBoard {
