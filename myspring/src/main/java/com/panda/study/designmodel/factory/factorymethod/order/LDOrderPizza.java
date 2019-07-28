@@ -2,7 +2,8 @@ package com.panda.study.designmodel.factory.factorymethod.order;
 
 import com.panda.study.designmodel.factory.factorymethod.pizza.LDChessPizza;
 import com.panda.study.designmodel.factory.factorymethod.pizza.LDPepperPizza;
-import com.panda.study.designmodel.factory.simplefactory.pizza.Pizza;
+import com.panda.study.designmodel.factory.factorymethod.pizza.Pizza;
+
 
 /**
  * Created by Administrator on 2019/7/28.

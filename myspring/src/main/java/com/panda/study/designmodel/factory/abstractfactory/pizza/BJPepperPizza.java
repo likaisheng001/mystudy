@@ -1,4 +1,4 @@
-package com.panda.study.designmodel.factory.factorymethod.pizza;
+package com.panda.study.designmodel.factory.abstractfactory.pizza;
 
 
 /**

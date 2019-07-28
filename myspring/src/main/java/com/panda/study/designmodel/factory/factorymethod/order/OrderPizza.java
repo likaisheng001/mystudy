@@ -1,7 +1,7 @@
 package com.panda.study.designmodel.factory.factorymethod.order;
 
-import com.panda.study.designmodel.factory.simplefactory.order.SimpleFactory;
-import com.panda.study.designmodel.factory.simplefactory.pizza.Pizza;
+
+import com.panda.study.designmodel.factory.factorymethod.pizza.Pizza;
 
 import java.io.BufferedReader;
 import java.io.IOException;
