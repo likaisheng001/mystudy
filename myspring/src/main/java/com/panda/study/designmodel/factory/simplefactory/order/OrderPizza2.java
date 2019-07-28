@@ -18,7 +18,7 @@ public class OrderPizza2 {
     String orderType = "";
     public OrderPizza2(){
         do{
-            orderType = gettype();
+            orderType = getType();
             pizza = SimpleFactory.createPizza2(orderType);
             //输出pizza
             if (pizza != null){//订购成功
@@ -34,7 +34,7 @@ public class OrderPizza2 {
     }
 
     //写一个方法，可以获取客户希望订购的披萨种类
-    private String gettype() {
+    private String getType() {
         try {
             BufferedReader strin = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("input pizza type:");
