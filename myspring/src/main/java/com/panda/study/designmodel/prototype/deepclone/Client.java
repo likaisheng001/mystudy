@@ -1,4 +1,4 @@
-package com.panda.study.prototype.deepclone;
+package com.panda.study.designmodel.prototype.deepclone;
 
 /**
  * Created by Administrator on 2019/7/29.

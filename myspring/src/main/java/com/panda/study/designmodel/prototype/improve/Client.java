@@ -1,4 +1,4 @@
-package com.panda.study.prototype.improve;
+package com.panda.study.designmodel.prototype.improve;
 
 /**
  * Created by Administrator on 2019/7/28.

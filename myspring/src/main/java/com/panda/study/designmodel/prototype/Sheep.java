@@ -1,13 +1,12 @@
-package com.panda.study.prototype.improve;
+package com.panda.study.designmodel.prototype;
 
 /**
  * Created by Administrator on 2019/7/28.
  */
-public class Sheep implements Cloneable{
+public class Sheep {
     private String name;
     private int age;
     private String color;
-    private String address = "蒙古羊";
 
     public Sheep(String name, int age, String color) {
         this.name = name;
@@ -45,19 +44,6 @@ public class Sheep implements Cloneable{
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", color='" + color + '\'' +
-                ", address='" + address + '\'' +
                 '}';
-    }
-
-    //克隆该实例，使用默认的clone方法来完成
-    @Override
-    protected Object clone(){
-        Sheep sheep = null;
-        try {
-            sheep =(Sheep) super.clone();
-        }catch (CloneNotSupportedException e){
-            System.out.println(e.getMessage());
-        }
-        return sheep;
     }
 }

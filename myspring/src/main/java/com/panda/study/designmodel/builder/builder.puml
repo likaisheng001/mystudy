@@ -1,0 +1,30 @@
+@startuml
+
+class House
+abstract class HouseBuilder
+HouseBuilder : House house
+HouseBuilder : void buildBisic()
+HouseBuilder : void buildWalls()
+HouseBuilder : void roofed()
+HouseBuilder : House build()
+
+class CommonHouse
+class HighBuilding
+HouseBuilder <|-- CommonHouse
+HouseBuilder <|-- HighBuilding
+
+class HouseDirector
+HouseDirector : HouseBuilder houseBuilder
+HouseDirector o-- HouseBuilder
+
+class Client
+Client --> HouseDirector
+Client --> CommonHouse
+Client --> HighBuilding
+
+note "产品" as n1
+House .. n1
+
+HouseBuilder *-- House
+
+@enduml
