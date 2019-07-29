@@ -1,0 +1,18 @@
+@startuml
+
+interface Interface4
+Interface4 : void operation1()
+Interface4 : void operation2()
+Interface4 : void operation3()
+Interface4 : void operation4()
+
+abstract class AbsAdapter
+Interface4 <|.. AbsAdapter
+note "默认实现接口的所有方法" as n1
+AbsAdapter .. n1
+
+class Client
+Client --> AbsAdapter
+note "在程序中使用匿名内部类-有选择的覆盖" as n2
+Client .. n2
+@enduml
