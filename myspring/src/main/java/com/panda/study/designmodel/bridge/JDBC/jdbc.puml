@@ -1,0 +1,19 @@
+@startuml
+interface java.sql.Connection
+interface com.mysql.jdbc.Connection
+interface com.mysql.jdbc.MySQLConnection
+
+java.sql.Connection <|-- com.mysql.jdbc.Connection
+java.sql.Connection <|-- Oracle数据库类似
+com.mysql.jdbc.Connection <|-- com.mysql.jdbc.MySQLConnection
+com.mysql.jdbc.MySQLConnection <|-- ConnectImpl
+
+class ConnectImpl
+class Oracle数据库类似
+
+class DriverManager
+class Client
+java.sql.Connection <-- DriverManager
+Client <-- DriverManager
+
+@enduml
