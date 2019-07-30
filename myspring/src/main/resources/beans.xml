@@ -8,8 +8,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-
  <!-- 这里我们的 scope="prototype" 即 原型模式来创建 -->
- <bean id="id01" class="com.panda.study.prototype.bean.Monster" scope="prototype"/>
+ <bean id="id01" class="com.panda.study.designmodel.prototype.bean.Monster" scope="prototype"/>
  
 </beans>
