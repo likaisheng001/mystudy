@@ -1,0 +1,18 @@
+@startuml
+
+abstract class OrganizationComponent
+OrganizationComponent : void add()
+OrganizationComponent : void remove()
+OrganizationComponent : void print()
+class Department
+class College
+class University
+class Client
+
+OrganizationComponent <|-- Department
+OrganizationComponent <|-- College
+OrganizationComponent <|-- University
+College o--left Department
+University o--left College
+Client --left> OrganizationComponent
+@enduml
