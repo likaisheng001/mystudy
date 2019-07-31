@@ -1,0 +1,29 @@
+@startuml
+
+class Configuration
+Configuration : MetaObject newMetaObject()
+class DefaultReflectorFactory
+class DefaultObjectFactory
+class DefaultObjectWrapperFactory
+interface ObjectFactory
+interface ObjectWrapperFactory
+interface ReflectorFactory
+class MetaObject
+class Client
+
+ObjectFactory <|.. DefaultObjectFactory
+ObjectWrapperFactory <|.. DefaultObjectWrapperFactory
+ReflectorFactory <|.. DefaultReflectorFactory
+Configuration *-- DefaultReflectorFactory
+Configuration *-- DefaultObjectFactory
+Configuration *-- DefaultObjectWrapperFactory
+Configuration --> MetaObject
+Client --> Configuration
+
+note "Facade" as n1
+note "子系统类" as n2
+Configuration ..right n1
+DefaultObjectFactory .. n2
+DefaultObjectWrapperFactory ..n2
+DefaultReflectorFactory .. n2
+@enduml

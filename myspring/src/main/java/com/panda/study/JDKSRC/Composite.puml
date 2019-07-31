@@ -1,0 +1,20 @@
+@startuml
+
+interface Map<K,V>
+Map : void put(K k,V v)
+Map : void putAll(Map map)
+Map : V get(Object k)
+Map : V remove(Object k)
+abstract class AbstractMap<K,V>
+class HashMap
+class Node
+class Client
+
+Map <|.. AbstractMap
+AbstractMap <|-- HashMap
+HashMap *--left Node
+Client --left> Map
+Client --left> HashMap
+
+
+@enduml
