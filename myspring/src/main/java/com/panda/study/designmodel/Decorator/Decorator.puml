@@ -1,0 +1,29 @@
+@startuml
+
+abstract class Drink
+Drink : String des
+Drink : float price
+Drink : abstract float cost()
+
+class Coffee
+class Expresso
+class LongBlack
+class ShortBlack
+
+class Soy
+class Milk
+class Chocolate
+class Decorator
+Decorator : Drink obj
+class CoffeeBar
+
+Drink <|-- Coffee
+Drink <|-- Soy
+Drink <|-- Milk
+Drink <|-- Chocolate
+Drink <|-- Decorator
+Coffee <|-- Expresso
+Coffee <|-- LongBlack
+Coffee <|-- ShortBlack
+
+@enduml
