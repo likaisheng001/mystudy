@@ -1,0 +1,23 @@
+@startuml
+
+abstract class WebSite
+WebSite : void use(User user)
+class ConcreteWebSite
+ConcreteWebSite : String type
+ConcreteWebSite : void use(User user)
+class WebSiteFactory
+WebSiteFactory : void getWebSiteCategory()
+class User
+
+WebSiteFactory o-- WebSite
+WebSite <|-- ConcreteWebSite
+WebSiteFactory <.. Client
+Client ..> ConcreteWebSite
+Client ..> User
+ConcreteWebSite ..> User
+
+note "User是享元模式的\n外部状态" as n1
+note "type是内部状态" as n2
+n1 .right. User
+n2 .right. ConcreteWebSite
+@enduml
