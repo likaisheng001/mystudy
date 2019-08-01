@@ -1,0 +1,27 @@
+@startuml
+
+interface ITeacherDao
+ITeacherDao : void teach()
+class TeacherDao
+TeacherDao : void teach()
+class TeacherDaoProxy
+TeacherDaoProxy : void teach()
+class Client
+
+
+ITeacherDao <|.. TeacherDao
+ITeacherDao <|.. TeacherDaoProxy
+TeacherDaoProxy o--left TeacherDao
+Client ..> TeacherDaoProxy
+Client ..> TeacherDao
+note as n1
+Client:
+  1.创建TeacherDaoProxy代理对象
+  2.创建TeacherDao对象
+  3.将TeacherDao对象交给TeacherDaoProxy对象
+  4.执行方法
+end note
+
+n1 ..right Client
+
+@enduml

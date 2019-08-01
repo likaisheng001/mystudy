@@ -1,0 +1,21 @@
+@startuml
+
+interface MethodInterceptor
+class TeacherDao
+TeacherDao : void teach()
+class ProxyFactory
+ProxyFactory : Object target
+ProxyFactory : void ProxyFactory()
+ProxyFactory : Object getInstance()
+class Client
+TeacherDao <.. Client
+ProxyFactory <.. Client
+
+MethodInterceptor <|.. ProxyFactory
+note as n1
+getInstance()给目标对象target创建一个代理对象
+重写interceptor()方法，实现对被代理对象(目标对象)方法的调用
+end note
+n1 ..left ProxyFactory
+
+@enduml
