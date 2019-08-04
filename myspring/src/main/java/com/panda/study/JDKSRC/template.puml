@@ -1,0 +1,44 @@
+@startuml
+
+interface ConfigurableApplication
+ConfigurableApplication : void refresh()
+
+abstract class AbstractApplicationContext
+ConfigurableApplication <|.. AbstractApplicationContext
+AbstractApplicationContext : void refresh()
+AbstractApplicationContext : void obtainFreshBeanFactory()
+AbstractApplicationContext : void refreshBeanFactory()
+AbstractApplicationContext : void getBeanFactory()
+AbstractApplicationContext : void postProcessBeanFactory()
+AbstractApplicationContext : void onRefresh()
+
+class GenericApplicationContext
+GenericApplicationContext : void getBeanFactory()
+GenericApplicationContext : void refreshBeanFactory()
+
+AbstractApplicationContext <|-- GenericApplicationContext
+abstract class AbstractRefreshableApplicationContext
+AbstractRefreshableApplicationContext : void getBeanFactory()
+AbstractRefreshableApplicationContext : void refreshBeanFactory()
+AbstractApplicationContext <|-- AbstractRefreshableApplicationContext
+
+class Client
+Client *-right- ConfigurableApplication
+
+note as n1
+getBeanFactory是抽象方法
+refreshBeanFactory是抽象方法
+postProcessBeanFactory是钩子方法
+onRefresh是钩子方法
+他们在模板方法refresh中被使用
+end note
+
+abstract class AbstractRefreshableConfigApplicationContext
+abstract class AbstractXmlApplicationContext
+class ClassPathXmlApplicationContext
+AbstractRefreshableApplicationContext <|-- AbstractRefreshableConfigApplicationContext
+AbstractRefreshableConfigApplicationContext <|-- AbstractXmlApplicationContext
+AbstractXmlApplicationContext <|-- ClassPathXmlApplicationContext
+Client ..> ClassPathXmlApplicationContext
+Client ..> GenericApplicationContext
+@enduml
