@@ -1,0 +1,38 @@
+@startuml
+
+abstract class Action
+Action : void operation1()
+Action : void operation2()
+
+class Success
+Success : void operation1()
+Success : void operation2()
+class Fail
+Fail : void operation1()
+Fail : void operation2()
+class Wait
+Action <|-- Wait
+
+Action <|-- Success
+Action <|-- Fail
+
+abstract class Person
+Person : void accept(Action action)
+class Man
+Man : void accept(Action action)
+class Woman
+Woman : void accept(Action action)
+Person <|-- Man
+Person <|-- Woman
+
+
+class ObjectStructure
+ObjectStructure : Person elements
+ObjectStructure o-right- Person
+Action -- Person
+
+class Client
+Client .right.> Action
+Client ..> ObjectStructure
+
+@enduml
