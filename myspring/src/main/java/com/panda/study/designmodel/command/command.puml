@@ -1,0 +1,41 @@
+@startuml
+
+interface Command
+Command : void execute()
+Command : void undo()
+
+class LightOnCommand
+LightOnCommand : void execute()
+LightOnCommand : void undo()
+class NoCommand
+class LightOffCommand
+
+class LightReceiver
+LightReceiver : void on()
+LightReceiver : void off()
+
+Command <|.. LightOnCommand
+Command <|.. LightOffCommand
+Command <|.. NoCommand
+LightOnCommand o-- LightReceiver
+LightOffCommand o-- LightReceiver
+
+class RemoteController
+RemoteController : Command[] onCommands()
+RemoteController : Command[] offCommands()
+
+RemoteController o-right- Command
+
+class Client
+Client <.. RemoteController
+Client <.. LightOnCommand
+Client <.. LightOffCommand
+Client <.. LightReceiver
+
+note as n1
+NoCommand表示空命令，
+对于简化操作，有帮助，
+可以省去对空的判断
+end note
+n1 .. NoCommand
+@enduml
