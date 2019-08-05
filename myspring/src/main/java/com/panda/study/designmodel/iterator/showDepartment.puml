@@ -1,0 +1,39 @@
+@startuml
+
+interface Iterator
+Iterator : boolean hasNext()
+Iterator : E next()
+Iterator : void remove()
+
+class ComputerCollegeIterator
+class InfoColleageIterator
+
+Iterator <|-- ComputerCollegeIterator
+Iterator <|-- InfoColleageIterator
+
+class Department
+ComputerCollegeIterator o-- Department
+InfoColleageIterator o-- Department
+InfoColleage o-- Department
+ComputerColleage o-- Department
+
+interface College
+College : Iterator createIterator()
+class ComputerColleage
+class InfoColleage
+College <|-- ComputerColleage
+College <|-- InfoColleage
+ComputerColleage .right.> ComputerCollegeIterator
+InfoColleage .right.> InfoColleageIterator
+
+class OutputImpl
+class Client
+OutputImpl o-- College
+Client ..> OutputImpl
+Client ..> Iterator
+note as n1
+完成对所有学院的输出
+end note
+n1 .right. OutputImpl
+
+@enduml
