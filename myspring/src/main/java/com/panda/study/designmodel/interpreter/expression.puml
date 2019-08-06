@@ -1,0 +1,26 @@
+@startuml
+
+class Client
+class Calculator
+Calculator o-- Expression
+Client .right.> Calculator
+abstract class Expression
+class VarExpression
+class SymbolExpression
+Expression <|-- VarExpression
+Expression <|-- SymbolExpression
+Expression --o SymbolExpression
+
+class SubExpression
+class AddExpression
+
+SymbolExpression <|-- SubExpression
+SymbolExpression <|-- AddExpression
+note as n1
+使用Stack
+1.设计模式
+2.程序本身逻辑
+搞清程序设计模式+Debug
+end note
+
+@enduml
