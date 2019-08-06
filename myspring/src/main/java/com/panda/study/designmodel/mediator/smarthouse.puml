@@ -1,0 +1,40 @@
+@startuml
+
+abstract class Mediator
+class ConcreteMediator
+abstract class Colleague
+class Alarm
+class TV
+class CoffeeMachine
+class Curtains
+class Client
+ConcreteMediator : HashMap colleagueMap
+ConcreteMediator : void getMessage()
+Colleague : void sendMessage()
+Colleague : Mediator getMediator()
+
+Mediator -right- Colleague
+Mediator <|-- ConcreteMediator
+Colleague <|-- Alarm
+Colleague <|-- TV
+Colleague <|-- CoffeeMachine
+Colleague <|-- Curtains
+Colleague --o ConcreteMediator
+Client ..> Mediator
+Client ..> Colleague
+
+note as n1
+中介者模式-智能家庭的操作流程
+1.创建ConcreteMediator对象
+2.创建各个同事类Alarm、CoffeeMachine、TV
+3.在创建同事类对象的时候，就直接通过构造器，加入到
+colleagueMap
+4.同事类对象，可以调用sendMessage,最终会去调用
+Concrete.getMessage方法
+5.getMessage会根据接收到的同事对象发出的消息来
+协调调用其它的同事对象完成任务
+6.可以看到getMessage是核心方法，最终会完成相应任务
+end note
+
+
+@enduml
