@@ -1,0 +1,16 @@
+@startuml
+
+class Memento
+Memento : int vit
+Memento : int def
+class GameRole
+GameRole : createMemento()
+class Caretaker
+Caretaker : Memento memento
+class Client
+Client ..> GameRole
+Client ..> Memento
+Memento --o Caretaker
+GameRole .right.> Memento
+
+@enduml
