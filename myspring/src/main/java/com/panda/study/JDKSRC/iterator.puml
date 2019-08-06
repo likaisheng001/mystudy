@@ -1,0 +1,30 @@
+@startuml
+
+interface List
+List : Iterator iterator()
+class ArrayList
+class LinkedList
+List <|.left. LinkedList
+ArrayList : Iterator iterator()
+ArrayList : Object[] elements
+interface Iterator
+Iterator : boolean hasNext()
+Iterator : E next()
+Iterator : void remove()
+class Itr
+Iterator <|.. Itr
+List <|.. ArrayList
+ArrayList *.right. Itr
+class Client
+Client ..> List
+Client ..> Iterator
+
+class Object
+ArrayList o-- Object
+Itr ..> Object
+
+note as n1
+List充当了聚合接口
+end note
+n1 .right. List
+@enduml
