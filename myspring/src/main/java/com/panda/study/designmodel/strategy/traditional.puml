@@ -1,0 +1,15 @@
+@startuml
+
+abstract Duck
+Duck : void quack()
+Duck : void swim()
+Duck : void fly()
+
+class WildDuck
+class PekingDuck
+class ToyDuck
+Duck <|-- WildDuck
+Duck <|-- PekingDuck
+Duck <|-- ToyDuck
+
+@enduml
