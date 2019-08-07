@@ -1,0 +1,28 @@
+@startuml
+
+abstract State
+State : void deductMoney()
+State : boolean raffle()
+State : void dispensePrize()
+class NoRaffleState
+class CanRaffleState
+class DispensePrice
+class DispenseOutState
+State <|-- NoRaffleState
+State <|-- CanRaffleState
+State <|-- DispensePrice
+State <|-- DispenseOutState
+class Activity
+Activity -- NoRaffleState
+Activity -- CanRaffleState
+Activity -- DispensePrice
+Activity -- DispenseOutState
+
+class Client
+Client ..> Activity
+Client ..> State
+note as n1
+Activity类含所有的状态对象
+各个状态子类也含有Activity对象
+end note
+@enduml

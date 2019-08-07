@@ -1,0 +1,38 @@
+@startuml
+
+interface State
+State : void operation1()
+State : void operation2()
+State : void operation3()
+State : void operation4()
+State : void operation5()
+
+abstract AbstractState
+class FeedBackState
+class PublishState
+State <|.. AbstractState
+AbstractState <|-- FeedBackState
+AbstractState <|-- PublishState
+class StateEnum
+class Context
+class Client
+FeedBackState --o StateEnum
+PublishState --o StateEnum
+State -right-o Context
+Context --|> AbstractState
+Client ..> Context
+Client ..> FeedBackState
+Client ..> PublishState
+note as n1
+AbstractState类
+提供接口所有方法的默认实现
+end note
+n1 .left. AbstractState
+note as n2
+AbstractState类的子类，
+就是具体的状态类，可以
+根据需要有选择的重写父类
+的默认实现
+end note
+PublishState .left. n2
+@enduml
