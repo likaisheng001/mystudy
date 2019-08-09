@@ -1,0 +1,23 @@
+@startuml
+
+interface Queue
+Queue : int capacity
+Queue : int front
+Queue : int rear
+Queue : T[] arr
+
+Queue : void add(T t) throws Exceptrion
+Queue : T remove()
+Queue : T peek()
+
+note as n1
+学习队列的三大难点：
+1.front、rear指针的定义和初始化
+2.判空判满
+3.循环队列的设计以及获取有效元素的方法
+end note
+
+
+
+
+@enduml
