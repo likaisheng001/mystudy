@@ -1,4 +1,4 @@
-package com.panda.study.java.data_structure.array;
+package algorithm.array;
 
 import org.junit.Test;
 

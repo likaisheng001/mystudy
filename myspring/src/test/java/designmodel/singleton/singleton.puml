@@ -1,0 +1,15 @@
+@startuml
+
+class Singleton
+Singleton : private static Singleton instance
+Singleton : public static Singleton getInstance()
+Singleton : private Singleton()
+
+note as n1
+单例模式的约定：
+1.私有化构造器
+2.在类的内部创建对象(不同单例模式创建对象的方式不同)
+3.对外暴露获取对象的静态公共方法
+end note
+
+@enduml
