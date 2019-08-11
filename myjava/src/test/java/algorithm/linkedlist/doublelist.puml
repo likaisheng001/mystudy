@@ -1,0 +1,23 @@
+@startuml
+
+class DataType
+class Node
+class DoubleList
+DoubleList : Node head
+DoubleList : void add(DataType x)
+DoubleList : void add(int index,DataType x)
+DoubleList : DataType get(int index)
+DoubleList : DataType remove(int index)
+DoubleList : DataType remove(DataType ele)
+DoubleList : int size()
+DoubleList +-- Node
+Node : DataType data
+Node : Node next
+Node : Node pre
+
+Node .right.> DataType
+note as n1
+head:头结点，不存放数据
+end note
+
+@enduml

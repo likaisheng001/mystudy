@@ -1,0 +1,24 @@
+@startuml
+
+
+class DataType
+class Node
+class SingleLinkedList
+SingleLinkedList : Node head
+SingleLinkedList : void add(DataType x)
+SingleLinkedList : void add(int index,DataType x)
+SingleLinkedList : DataType get(int index)
+SingleLinkedList : DataType remove(int index)
+SingleLinkedList : int size()
+SingleLinkedList +-- Node
+Node : DataType data
+Node : Node next
+
+Node .right.> DataType
+note as n1
+head:头结点，不存放数据
+DataType:用户自定义数据类型，
+实际使用时，可用泛型处理
+end note
+
+@enduml

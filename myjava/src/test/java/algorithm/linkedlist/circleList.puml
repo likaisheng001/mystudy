@@ -1,0 +1,27 @@
+@startuml
+
+class DataType
+class Node
+class CircleList
+CircleList : Node first
+CircleList : void add(DataType x)
+CircleList : void add(int index,DataType x)
+CircleList : DataType get(int index)
+CircleList : DataType remove(int index)
+CircleList : DataType remove(DataType ele)
+CircleList : int size()
+CircleList +-- Node
+Node : DataType data
+Node : Node next
+
+Node .right.> DataType
+note as n1
+循环链表没有头节点，
+循环链表的第一个节点存放数据
+
+凡是可能修改成员变量的操作，
+都是敏感操作，在写算法时，
+需要注意
+end note
+
+@enduml
