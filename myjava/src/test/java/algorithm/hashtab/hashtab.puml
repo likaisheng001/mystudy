@@ -1,0 +1,25 @@
+@startuml
+
+class HashTab<E>
+HashTab : int modCount
+HashTab : LinkedList[] table
+HashTab : - int hash(E e)
+HashTab : + void add(E e)
+HashTab : + Node findById(int id)
+
+class LinkedList
+LinkedList : Node head
+LinkedList : void add(E e)
+LinkedList : E findById(int id)
+class Node
+Node : Node next
+Node : E value
+HashTab +-- LinkedList
+HashTab +-- Node
+LinkedList -right-> Node
+note as n1
+HashMap就是散列表(升级版)
+LinkedList是一个不含头结点的链表
+end note
+
+@enduml

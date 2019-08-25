@@ -18,9 +18,9 @@ Decorator : Drink obj
 class CoffeeBar
 
 Drink <|-- Coffee
-Drink <|-- Soy
-Drink <|-- Milk
-Drink <|-- Chocolate
+Decorator <|-- Soy
+Decorator <|-- Milk
+Decorator <|-- Chocolate
 Drink <|-- Decorator
 Coffee <|-- Expresso
 Coffee <|-- LongBlack

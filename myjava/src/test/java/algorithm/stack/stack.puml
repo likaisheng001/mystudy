@@ -1,0 +1,19 @@
+@startuml
+
+class DataType
+class ArrayStack
+ArrayStack : int maxSize
+ArrayStack : DataType[] stack
+ArrayStack : int top
+ArrayStack : boolean isFull()
+ArrayStack : boolean isEmpty()
+ArrayStack : DataType pop()
+ArrayStack : void push(DataType ele)
+
+note as n1
+如果使用链表实现，
+链栈不需要maxSize
+end note
+
+
+@enduml

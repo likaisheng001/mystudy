@@ -5,7 +5,7 @@ class TeacherDao
 TeacherDao : void teach()
 class ProxyFactory
 ProxyFactory : Object target
-ProxyFactory : void ProxyFactory()
+ProxyFactory : void ProxyFactory(Object target)
 ProxyFactory : Object getInstance()
 class Client
 TeacherDao <.. Client
