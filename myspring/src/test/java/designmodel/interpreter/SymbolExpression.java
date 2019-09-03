@@ -2,9 +2,7 @@ package designmodel.interpreter;
 
 import java.util.HashMap;
 
-/**
- * Created by Administrator on 2019/9/2.
- */
+//定义符号表达式解析器
 public class SymbolExpression extends Expression{
     protected Expression left;
     protected Expression right;
@@ -14,7 +12,6 @@ public class SymbolExpression extends Expression{
         this.right = right;
     }
 
-    //此处留给子类实现
     @Override
     public int interpreter(HashMap<String, Integer> var) {
         return 0;

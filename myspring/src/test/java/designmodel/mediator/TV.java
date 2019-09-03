@@ -1,22 +1,27 @@
 package designmodel.mediator;
 
 /**
- * Created by Administrator on 2019/9/2.
+ * Created by Administrator on 2019/9/3.
  */
 public class TV extends Colleague{
     public TV(Mediator mediator, String name) {
         super(mediator, name);
-        mediator.register(name,this);
+        // TODO Auto-generated constructor stub
+        mediator.register(name, this);
     }
 
     @Override
     public void sendMessage(int stateChange) {
-        this.getMediator().getMessage(stateChange,this.name);
+        this.getMediator().getMessage(stateChange, this.name);
     }
-    public void startTV(){
-        System.out.println("it's time to start tv!");
+
+    public void StartTv() {
+        // TODO Auto-generated method stub
+        System.out.println("It's time to StartTv!");
     }
-    public void stopTV(){
-        System.out.println("it's time to stop tv!");
+
+    public void StopTv() {
+        // TODO Auto-generated method stub
+        System.out.println("StopTv!");
     }
 }

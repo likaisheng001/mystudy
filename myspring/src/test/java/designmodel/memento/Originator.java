@@ -1,7 +1,5 @@
 package designmodel.memento;
 
-import designmodel.mediator.Mediator;
-
 /**
  * Created by Administrator on 2019/9/2.
  */

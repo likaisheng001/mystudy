@@ -2,9 +2,7 @@ package designmodel.interpreter;
 
 import java.util.HashMap;
 
-/**
- * Created by Administrator on 2019/9/2.
- */
+//定义变量的解释器
 public class VarExpression extends Expression{
     private String key;
 
@@ -14,6 +12,6 @@ public class VarExpression extends Expression{
 
     @Override
     public int interpreter(HashMap<String, Integer> var) {
-        return var.get(this.key);
+        return var.get(key);
     }
 }
