@@ -20,7 +20,17 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <!-- 引入google提供的zxing工具类，学习生成二维码功能 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
     </dependencies>
-
-
 </project>
