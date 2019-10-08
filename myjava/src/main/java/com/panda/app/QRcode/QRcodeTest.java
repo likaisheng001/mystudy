@@ -1,4 +1,4 @@
-package com.panda.QRcode;
+package com.panda.app.QRcode;
 
 import java.io.File;
 
