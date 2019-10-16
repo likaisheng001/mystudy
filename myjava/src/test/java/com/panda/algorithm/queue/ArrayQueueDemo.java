@@ -1,4 +1,4 @@
-package algorithm.queue;
+package com.panda.algorithm.queue;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package algorithm.array;
+package com.panda.algorithm.array;
 
 import org.junit.Test;
 

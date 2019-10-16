@@ -1,4 +1,4 @@
-package algorithm.stack;
+package com.panda.algorithm.stack;
 
 import java.util.Scanner;
 

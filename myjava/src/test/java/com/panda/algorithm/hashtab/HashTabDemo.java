@@ -1,4 +1,4 @@
-package algorithm.hashtab;
+package com.panda.algorithm.hashtab;
 
 import java.util.Scanner;
 

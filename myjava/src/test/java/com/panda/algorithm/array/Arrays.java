@@ -1,4 +1,4 @@
-package algorithm.array;
+package com.panda.algorithm.array;
 
 /**
  * 定于数组的运算

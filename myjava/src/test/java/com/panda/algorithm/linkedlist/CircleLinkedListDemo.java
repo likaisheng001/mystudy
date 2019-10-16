@@ -1,4 +1,4 @@
-package algorithm.linkedlist;
+package com.panda.algorithm.linkedlist;
 
 /**
  * Created by Administrator on 2019/8/11.
