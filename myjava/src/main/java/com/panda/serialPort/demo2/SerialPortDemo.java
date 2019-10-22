@@ -13,8 +13,8 @@ import java.util.HashMap;
 public class SerialPortDemo {
     public static void main(String[] args) {
         HashMap<String, Comparable> params = new HashMap<String, Comparable>();
-        params.put(SerialReader.PARAMS_PORT, "COM1"); // 端口名称
-        params.put(SerialReader.PARAMS_RATE, 9600); // 波特率
+        params.put(SerialReader.PARAMS_PORT, "COM5"); // 端口名称
+        params.put(SerialReader.PARAMS_RATE, 600); // 波特率
         params.put(SerialReader.PARAMS_TIMEOUT, 1000); // 设备超时时间 1秒
         params.put(SerialReader.PARAMS_DELAY, 200); // 端口数据准备时间 1秒
         params.put(SerialReader.PARAMS_DATABITS, SerialPort.DATABITS_8); // 数据位

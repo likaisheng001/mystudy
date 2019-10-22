@@ -12,8 +12,8 @@ public class SerialPortTest {
         DSerialPort sp = new DSerialPort();
         sp.listPorts();
 
-        sp.selectPort("COM1");
-        sp.write("java: hello serial port!");
+        sp.selectPort("COM5");
+        //sp.write("java: hello serial port!");
         sp.startRead(120);
     }
 }
