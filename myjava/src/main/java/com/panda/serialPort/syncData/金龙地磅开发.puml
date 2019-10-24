@@ -1,0 +1,50 @@
+@startuml
+class WeighBridgeUtil
+
+class RS232SerialPort
+RS232SerialPort : void readMode()
+RS232SerialPort : void commandMode()
+RS232SerialPort : byte[] read()
+RS232SerialPort : void write(byte[] bytes)
+RS232SerialPort : void connect()
+RS232SerialPort : boolean verify()
+RS232SerialPort : byte[] addVerifyCode()
+RS232SerialPort : byte[] addStartBit()
+
+class WeighBridgeInterpreter
+WeighBridgeInterpreter : interpreteAdr()
+WeighBridgeInterpreter : interpreteCmd()
+WeighBridgeInterpreter : interpreteData()
+
+class WeighBridge
+WeighBridge *-- RS232SerialPort
+WeighBridge *-- WeighBridgeInterpreter
+
+note as n1
+WeighBridge类的功能：
+1. 负责管理与地磅接口连接和读写
+2. 负责管理数据的解析
+3. 输出
+end note
+n1 .right. WeighBridge
+
+note as n2
+RS232SerialPort类的功能：
+1. 用于对地磅接口的读写
+2. 用于与地磅接口的连接
+3. 校验数据并返回数据
+end note
+n2 .left. RS232SerialPort
+
+note as n3
+RS232SerialPort类的功能：
+1. 用于解析从接口获取的数据
+end note
+n3 .left. WeighBridgeInterpreter
+
+note as n4
+WeighBridgeUtil的功能：
+1. 保存一些辅助地磅交互的工具方法
+end note
+n4 .left. WeighBridgeUtil
+@enduml

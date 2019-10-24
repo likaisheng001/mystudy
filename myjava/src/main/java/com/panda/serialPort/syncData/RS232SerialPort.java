@@ -3,7 +3,9 @@ package com.panda.serialPort.syncData;
 import gnu.io.*;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.TooManyListenersException;
 
 /**
@@ -13,6 +15,7 @@ import java.util.TooManyListenersException;
  * @Modified By:
  */
 public class RS232SerialPort implements Runnable, SerialPortEventListener {
+    private static LinkedList<Byte> RECEIVEBYTES = new LinkedList<Byte>();
 
     private String appName = "Java串口通信测试";
     private int timeout = 2000;
@@ -23,21 +26,8 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
     private InputStream inputStream;
     private OutputStream outputStream;
 
-    //罗列串口
-    public void listPorts() {
-        CommPortIdentifier cpid;
-        Enumeration en = CommPortIdentifier.getPortIdentifiers();
 
-        System.out.println("now to list all Port of this PC：" + en);
-        System.out.println("list all ports of the pc:" + en);
 
-        while (en.hasMoreElements()) {
-            cpid = (CommPortIdentifier) en.nextElement();
-            if (cpid.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-                System.out.println(cpid.getName() + "," + cpid.getCurrentOwner());
-            }
-        }
-    }
     //选择串口
     public void selectPort(String portName) {
 
@@ -58,14 +48,14 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
 
     //打开串口(串口是串行端口)
     private void openPort() {
-        if (commPort == null){
-            log(String.format("无法找到名字为'%1$s'的串口！", commPort.getName()));
+        if (commPort == null) {
+
         } else {
-            log("端口选择成功，当前端口：" + commPort.getName() + ",现在实例化 SerialPort:");
+
 
             try {
                 serialPort = (SerialPort) commPort.open(appName, timeout);
-                log("实例 SerialPort 成功！");
+
             } catch (PortInUseException e) {
                 throw new RuntimeException(String.format("端口'%1$s'正在使用中！",
                         commPort.getName()));
@@ -75,7 +65,7 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
 
     //检查端口是否正确连接
     private void checkPort() {
-        if (commPort == null){
+        if (commPort == null) {
             throw new RuntimeException("没有选择端口，请使用 selectPort(String portName) 方法选择端口");
         }
         if (serialPort == null) {
@@ -94,9 +84,10 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
         }
 
         try {
+            //将发送的数据转成十六进制
+            outputStream.write(RS232SerialPort.hexStringToBytes(message));
+            //outputStream.write(message.getBytes());
 
-            outputStream.write(message.getBytes());
-            log("信息发送成功！");
         } catch (IOException e) {
             throw new RuntimeException("向端口发送信息时出错：" + e.getMessage());
         } finally {
@@ -109,6 +100,7 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
 
     /**
      * 开始监听从端口中接收的数据
+     *
      * @param time 监听程序的存活时间，单位为秒，0 则是一直监听
      * @Return void
      */
@@ -116,8 +108,8 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
         checkPort();
 
         try {
-
-            inputStream = new BufferedInputStream(serialPort.getInputStream());
+            inputStream = serialPort.getInputStream();
+            // inputStream = new BufferedInputStream(serialPort.getInputStream());
         } catch (IOException e) {
             throw new RuntimeException("获取端口的InputStream出错：" + e.getMessage());
         }
@@ -130,23 +122,19 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
 
         serialPort.notifyOnDataAvailable(true);
 
-        log(String.format("开始监听来自'%1$s'的数据--------------", commPort.getName()));
         if (time > 0) {
             this.threadTime = time * 1000;
             Thread t = new Thread(this);
             t.start();
-            log(String.format("监听程序将在%1$d秒后关闭。。。。", threadTime));
+
         }
     }
+
     //关闭 SerialPort
     public void close() {
         serialPort.close();
         serialPort = null;
         commPort = null;
-    }
-
-    public void log(String msg) {
-        System.out.println(appName + " --> " + msg);
     }
 
     //数据接收的监听处理函数
@@ -164,20 +152,16 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
             case SerialPortEvent.OUTPUT_BUFFER_EMPTY:/*Output buffer is empty，输出缓冲区清空*/
                 break;
             case SerialPortEvent.DATA_AVAILABLE:/*Data available at the serial port，端口有可用数据。读到缓冲数组，输出到终端*/
+
                 byte[] readBuffer = new byte[1024];
-                String readStr = "";
                 String s2 = "";
-
                 try {
-
                     while (inputStream.available() > 0) {
-                        inputStream.read(readBuffer);
-                        readStr += new String(readBuffer,"GBK").trim();
+                        int len = inputStream.read(readBuffer);
+                        for (int i = 0; i < len; i++) {
+                            RECEIVEBYTES.add(readBuffer[i]);
+                        }
                     }
-                    s2 = new String(readBuffer,"GBK").trim();
-
-                    log("接收到端口返回数据(长度为" + readStr.length() + ")：" + readStr);
-                    log(s2);
                 } catch (IOException e) {
                     System.out.println(e);
                 }
@@ -190,7 +174,7 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
         try {
             Thread.sleep(threadTime);
             serialPort.close();
-            log(String.format("端口''监听关闭了！", commPort.getName()));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -198,30 +182,53 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
 
     /**
      * 将十六进制字符串转换成byte数组
+     *
      * @param str
      * @return
      */
-    public static byte[] hexStringToBytes(String str){
+    public static byte[] hexStringToBytes(String str) {
         //此处并未校验传入参数是否合法
         //此处保证传入的字符串为偶数，方便后续处理
-        if (str.length() % 2 != 0){
-            str = "0"+str;
+        if (str.length() % 2 != 0) {
+            str = "0" + str;
         }
         String[] strs = str.split("");
         byte[] bytes = new byte[strs.length];
-        byte[] bytes2 = new byte[(strs.length)/2]; //此处预先判断一下，传入的必须是偶数个字符，如果不足，就手动补一个
+        byte[] bytes2 = new byte[(strs.length) / 2]; //此处预先判断一下，传入的必须是偶数个字符，如果不足，就手动补一个
         for (int i = 0; i < strs.length; i++) {
             bytes[i] = Byte.parseByte(strs[i]);
         }
         //进制转换 - 舍高4位，取低4位，将两个字节合并为一个
         int idx = 0;
-        byte b1,b2 = 0;
-        for (int i = 0; i < bytes.length; i+=2) {
-            b1 = 0;b2 = 0;
-            b1= (byte) (bytes[i] << 4);         //抹掉高4位
-            b2 = (byte)(bytes[i+1] & 0xf);      //抹掉低4位
-            bytes2[idx++] = (byte)(b1|b2);
+        byte b1, b2 = 0;
+        for (int i = 0; i < bytes.length; i += 2) {
+            b1 = 0;
+            b2 = 0;
+            b1 = (byte) (bytes[i] << 4);         //抹掉高4位
+            b2 = (byte) (bytes[i + 1] & 0xf);      //抹掉低4位
+            bytes2[idx++] = (byte) (b1 | b2);
         }
         return bytes2;
+    }
+
+    public static LinkedList<Byte> getRECEIVEBYTES() {
+        return RECEIVEBYTES;
+    }
+
+    /**
+     * 工具方法，将byte[]转换成十六进制返回，只支持100字节以内的byte数组
+     *
+     * @param bytes
+     */
+    public static String stringToHex(byte[] bytes) {
+        StringBuilder builder = new StringBuilder(100);
+        for (int i = 0; i < bytes.length; i++) {
+            String hexStr = Integer.toHexString(bytes[i] & 0xFF) + " ";
+            if (hexStr.length() == 2) {
+                hexStr = '0' + hexStr;
+            }
+            builder.append(hexStr);
+        }
+        return builder.toString();
     }
 }

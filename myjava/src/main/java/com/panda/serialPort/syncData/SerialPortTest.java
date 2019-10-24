@@ -1,6 +1,7 @@
 package com.panda.serialPort.syncData;
 
 import java.io.UnsupportedEncodingException;
+import java.util.*;
 
 /**
  * @Author: Likaisheng
@@ -9,23 +10,53 @@ import java.io.UnsupportedEncodingException;
  * @Modified By:
  */
 public class SerialPortTest {
-    public static void main(String[] args) throws UnsupportedEncodingException {
+    public static void main(String[] args) throws UnsupportedEncodingException, InterruptedException {
+        //此处可以做两个线程池，来保存输入流或输出流
 
-
-        /*//将串口的配置参数外提：端口号，波特率
+        //将串口的配置参数外提：端口号，波特率
         RS232SerialPort sp = new RS232SerialPort();
-        sp.listPorts();
+
         sp.selectPort("COM5");
 
         //模拟向地磅发送数据
         //sp.write("java: hello serial port!");
         sp.startRead(120);
-        sp.write(WeighBridgeCommandEnum.A.getCommand());*/
-        //写个方法，将字符串转成十六进制
+        //使用生产者消费者模式来控制读写
+        sp.write(WeighBridgeCommandEnum.A.getCommand());
+        sp.write(WeighBridgeCommandEnum.D.getCommand());
+        Thread.sleep(1000);
+        System.out.println(RS232SerialPort.getRECEIVEBYTES());
+        LinkedList<Byte> receivebytes = RS232SerialPort.getRECEIVEBYTES();
+        //取数据以2和3为标志来取数据
+        HashMap<Integer, List<Byte>> commandMap = new HashMap<Integer, List<Byte>>();
+        int idx = 1;
+        for (int i = 0; i < receivebytes.size(); i++) {
+            if (receivebytes.get(i) == 2){
+                commandMap.put(idx,new LinkedList<Byte>());
+            }else if (receivebytes.get(i) == 3){
+                idx ++;
+            }else{
+                commandMap.get(idx).add(receivebytes.get(i));
+            }
+        }
+        Iterator<Map.Entry<Integer, List<Byte>>> iterator = commandMap.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<Integer, List<Byte>> next = iterator.next();
+            List<Byte> value = next.getValue();
+            System.out.println(value);
+        }
+        //进行校验
+        List<Byte> bytes = commandMap.get(1);
+        for (int i = 0; i < bytes.size(); i++) {
 
-        //字符串预处理
-        byte[] bytes = RS232SerialPort.hexStringToBytes(WeighBridgeCommandEnum.A.getCommand());
+        }
+        List<Byte> bytes1 = commandMap.get(2);
+        //处理小数点
+        //获取实际数据 如何处理小数点
+        LinkedList<Character> list = new LinkedList<Character>();
+        for (int i = 3; i < bytes1.size()-2; i++) {
 
+        }
     }
 }
 //地磅命令
@@ -50,6 +81,5 @@ enum WeighBridgeCommandEnum{
     public String getDesc() {
         return desc;
     }
-
 }
 
