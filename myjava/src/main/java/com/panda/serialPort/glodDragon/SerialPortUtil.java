@@ -8,7 +8,7 @@ package com.panda.serialPort.glodDragon;/**
  * @Date: Created in 14:34 2019/10/23
  * @Modified By:
  */
-public class WeighBridgeUtil {
+public class SerialPortUtil {
     /**
      * 工具方法，将byte[]转换成十六进制返回，只支持100字节以内的byte数组
      *
