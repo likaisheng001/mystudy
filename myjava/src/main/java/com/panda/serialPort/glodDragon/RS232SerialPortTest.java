@@ -35,4 +35,17 @@ public class RS232SerialPortTest {
         }
         System.out.println("输出校验位:"+b);
     }
+    //在测试异步读时，需要把main线程阻塞，main线程一旦结束，整个程序就结束了
+    //注意：具体情况并未测试，时间充裕要详细测试 - 如果main线程结束了，系统的线程资源并未释放，这很危险！！！
+    @Test
+    public void asyReadTest(){
+        RS232SerialPort rs232SerialPort = new RS232SerialPort();
+        rs232SerialPort.initSerialPort(9600, SerialPort.DATABITS_8,SerialPort.STOPBITS_1,SerialPort.PARITY_NONE,"COM1","测试");
+        rs232SerialPort.asyRead();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

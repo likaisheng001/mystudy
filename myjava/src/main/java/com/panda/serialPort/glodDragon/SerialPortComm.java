@@ -127,7 +127,7 @@ public class SerialPortComm {
             int len = 0;
             boolean flag = false;
 
-            while (inputStream.available() > 0){
+            if (inputStream.available() > 0){
                 len = inputStream.read(buf);
                 for (int i = 0; i < len; i++){
                     if (buf[i] == endBit){
