@@ -35,17 +35,5 @@ public class RS232SerialPort{
             e1.printStackTrace();
         }
     }
-    //检验
-    public void verify(){
-        byte[] buf = read(20000);
-        byte b = buf[0];
-        for (int i = 1; i < buf.length-2; i++) {
-            b = (byte)(b ^ buf[i]);
-        }
-        System.out.println("输出校验位:"+b);
-    }
-    //解析
-    public void interpret(){
-        //解析地址、解析命令、解析数据
-    }
+
 }

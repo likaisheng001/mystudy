@@ -3,6 +3,7 @@ package com.panda.serialPort.glodDragon;/**
  */
 
 import gnu.io.SerialPort;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -30,5 +31,11 @@ public class SerialPortTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @Test
+    public void showPorts(){
+        SerialPortBase serialPortBase = new SerialPortBase("测试");
+        serialPortBase.listPorts();
+        serialPortBase.openPort("127.0.0.1:COM1");
     }
 }

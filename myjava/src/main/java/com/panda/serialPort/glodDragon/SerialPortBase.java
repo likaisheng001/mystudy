@@ -41,13 +41,16 @@ public class SerialPortBase {
     public void listPorts(){
         CommPortIdentifier cpid;
         Enumeration en = CommPortIdentifier.getPortIdentifiers();
-
         while (en.hasMoreElements()){
             cpid = (CommPortIdentifier)en.nextElement();
-            if (cpid.getPortType() == CommPortIdentifier.PORT_SERIAL){
-                System.out.println("串口名：" + cpid.getName() + ",串口用户:" + cpid.getCurrentOwner());
-            }
+            System.out.println("端口号:"+cpid.getName()+",串口用户:" + cpid.getCurrentOwner());
         }
+//        while (en.hasMoreElements()){
+//            cpid = (CommPortIdentifier)en.nextElement();
+//            if (cpid.getPortType() == CommPortIdentifier.PORT_SERIAL){
+//                System.out.println("串口名：" + cpid.getName() + ",串口用户:" + cpid.getCurrentOwner());
+//            }
+//        }
     }
 
     //选择串口

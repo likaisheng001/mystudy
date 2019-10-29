@@ -59,7 +59,7 @@ public class SerialPortComm {
     public byte[] read(int timeout) throws IOException {
         byte[] buf = new byte[1024];
         int len = 0;
-        boolean flag = false;
+        int flag = 0; //用来控制数据 1-代表开始，2-代表结束
         long startTime = System.currentTimeMillis();
         long currentTime = startTime;
 
@@ -71,15 +71,15 @@ public class SerialPortComm {
             while (inputStream.available() > 0){
                 len = inputStream.read(buf);
                 for (int i = 0; i < len; i++){
-                    if (buf[i] == endBit){
-                        flag = false;
+                    if (buf[i] == endBit && flag == 1){
+                        flag = 2;
                         break loop1;
                     }
-                    if (flag){
+                    if (flag == 1){
                         readBuf[readLen++] = buf[i];
                     }
                     if (buf[i] == startBit){
-                        flag = true;
+                        flag = 1;
                     }
                 }
             }
