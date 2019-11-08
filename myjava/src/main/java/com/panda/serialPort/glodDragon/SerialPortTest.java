@@ -38,4 +38,30 @@ public class SerialPortTest {
         serialPortBase.listPorts();
         serialPortBase.openPort("127.0.0.1:COM1");
     }
+    @Test
+    public void verify(){
+        String str = "41 44 2B 30 30 36 38 34 30 32";
+        byte[] arr2 = new byte[10];
+        arr2[0] = 65;
+        arr2[1] = 68;
+        arr2[2] = 43;
+        arr2[3] = 48;
+        arr2[4] = 48;
+        arr2[5] = 54;
+        arr2[6] = 56;
+        arr2[7] = 52;
+        arr2[8] = 48;
+        arr2[9] = 50;
+
+        byte b = arr2[0];
+        for (int i = 1; i < arr2.length; i++) {
+            b = (byte)(b ^ arr2[i]);
+        }
+        System.out.println("异或后的结果为:"+b); // 22  0001 0110
+        //异或高位小于等于9  1+30 = 31； 异或低位小于等于9  6+30 = 36
+        /*String[] arr = str.split(" ");
+        for (int i = 0; i < arr.length; i++) {
+            arr2 = WeighBridgeUtil.hexStringToBytes(arr[i]);
+        }*/
+    }
 }

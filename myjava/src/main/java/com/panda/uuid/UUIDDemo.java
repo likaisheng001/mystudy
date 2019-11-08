@@ -13,6 +13,8 @@ import java.util.UUID;
 public class UUIDDemo {
     public static void main(String[] args) {
         String uuidStr = UUID.randomUUID().toString();
+        String uuidStr2 = UUID.randomUUID().toString();
         System.out.println("uuidStr:"+uuidStr);
+        System.out.println("uuidStr2:"+uuidStr2);
     }
 }
