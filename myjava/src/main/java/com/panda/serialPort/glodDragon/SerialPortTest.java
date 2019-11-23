@@ -40,7 +40,7 @@ public class SerialPortTest {
     }
     @Test
     public void verify(){
-        String str = "41 44 2B 30 30 36 38 34 30 32";
+        //String str = "41 44 2B 30 30 36 38 34 30 32";
         byte[] arr2 = new byte[10];
         arr2[0] = 65;
         arr2[1] = 68;
@@ -54,7 +54,7 @@ public class SerialPortTest {
         arr2[9] = 50;
 
         byte b = arr2[0];
-        for (int i = 1; i < arr2.length; i++) {
+        for (int i = 1; i < arr2.length-2; i++) {
             b = (byte)(b ^ arr2[i]);
         }
         System.out.println("异或后的结果为:"+b); // 22  0001 0110
