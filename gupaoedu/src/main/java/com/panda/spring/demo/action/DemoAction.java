@@ -22,8 +22,12 @@ import java.io.IOException;
 @GPRequestMapping("/demo")
 public class DemoAction {
 
+    //http://localhost/demo/query?name=Tom&name=Vulcan&name=James
+    //@GPRequestMapping("/query")
+    //http://localhost/demo/queryxxx?name=Tom
+    //@GPRequestMapping("/query.*")
     @GPAutowired private IQueryService queryService;
-    @GPRequestMapping("/query")
+    @GPRequestMapping("/query.*")
     public void query(HttpServletRequest req, HttpServletResponse resp, @GPRequestParam("name")String name){
         String result = "My name is " + name;
         try {
@@ -31,6 +35,28 @@ public class DemoAction {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+    @GPRequestMapping("/add")
+    public void add(HttpServletRequest req,HttpServletResponse resp,
+                    @GPRequestParam("a")Integer a,@GPRequestParam("b")Integer b){
+        try{
+            resp.getWriter().write(a + "+" + b + "=" + (a + b));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    @GPRequestMapping("/sub")
+    public void sub(HttpServletRequest req,HttpServletResponse resp,
+                    @GPRequestParam("a")Double a,@GPRequestParam("b")Double b){
+        try{
+            resp.getWriter().write(a + "-" + b + "=" + (a - b));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
+    @GPRequestMapping("/remove")
+    public String remove(@GPRequestParam("id")Integer id){
+        return ""+id;
     }
 }

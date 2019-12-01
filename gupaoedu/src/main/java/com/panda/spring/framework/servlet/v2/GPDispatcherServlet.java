@@ -1,12 +1,8 @@
-package com.panda.spring.framework.servlet;/**
+package com.panda.spring.framework.servlet.v2;/**
  * Created by My on 2019-11-30.
  */
 
-import com.panda.spring.framework.annotation.GPAutowired;
-import com.panda.spring.framework.annotation.GPController;
-import com.panda.spring.framework.annotation.GPRequestMapping;
-import com.panda.spring.framework.annotation.GPService;
-import org.junit.jupiter.api.Test;
+import com.panda.spring.framework.annotation.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -16,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -76,16 +73,65 @@ public class GPDispatcherServlet extends HttpServlet{
             return;
         }
         Method method = this.handlerMapping.get(url);
-        //投机取巧的方式
-        //通过反射拿到method所在的class，拿到class之后还是拿到class的name
-        String beanName = toLowerFirstCase(method.getDeclaringClass().getSimpleName());
+
         //为了投机取巧，暂时写死
         Map<String,String[]> params = req.getParameterMap();
 
+        //获取方法的形参列表
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        Object[] paramValues = new Object[parameterTypes.length];
 
-        method.invoke(ioc.get(beanName),new Object[]{req,resp,params.get("name")[0]});
+        //这是一个简化版本
+        for (int i = 0; i < parameterTypes.length; i++){
+            Class parameterType = parameterTypes[i];
+            //不能用instanceof,parameterType是形参而不是实参
+            if(parameterType == HttpServletRequest.class){
+                paramValues[i] = req;
+                continue;
+            }else if(parameterType == HttpServletResponse.class){
+                paramValues[i] = resp;
+                continue;
+            }
+
+            //把方法上的注解拿到，得到的是一个二维数组
+            Annotation[][] pa = method.getParameterAnnotations();
+            for (int j = 0; j < pa.length; j++){
+                for (Annotation a : pa[i]){
+                    //我们要解析的只是GPRequestParam
+                    if (a instanceof GPRequestParam) {
+                        //拿到参数名称，去http://localhost/demo/query?name=Tom匹配
+                        String paramName = ((GPRequestParam) a).value();
+
+                        if (params.containsKey(paramName)) {
+                            //此段代码太晕车，改变思路 -- 进入3.0
+//                            for (Map.Entry<String, String[]> param : params.entrySet()) {
+//                                                                                            //或者左括号或者右括号
+//                                String value = Arrays.toString(param.getValue()).replaceAll("\\[|\\]","")
+//                                        .replaceAll("\\s",",");
+//                                //类型的强制转换
+//                                paramValues[i] = convert(parameterType, value);
+//                            }
+                            //烂尾项目
+                        }
+                    }
+                }
+            }
+        }
+        //投机取巧的方式
+        //通过反射拿到method所在的class，拿到class之后还是拿到class的name
+        String beanName = toLowerFirstCase(method.getDeclaringClass().getSimpleName());
+        method.invoke(ioc.get(beanName),paramValues);
     }
-
+    //url传过来的参数都是String类型的，Http是基于字符串协议
+    //只需要把String转换为任意类型就好
+    private Object convert(Class<?> type,String value){
+        if (Integer.class == type){
+            return Integer.valueOf(value);
+        }
+        //如果还有double或者其他类型，继续加if
+        //这时候，我们应该想到策略模式了 -- 在这里暂时不实现
+        return value;
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
