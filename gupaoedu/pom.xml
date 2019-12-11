@@ -44,6 +44,12 @@
             <version>1.7.25</version>
         </dependency>
 
+        <!-- 一款非常好用的观察者模式框架 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
