@@ -4,20 +4,23 @@ package com.panda.jvm;/**
 
 /**
  * @Author: Likaisheng
- * @Description: 学习理解栈帧
+ * @Description:
  * @Date: Created in 09:41:46 2019-11-23
  * @Modified By:
  */
 public class StackTest {
+    private static int num = 0;
     public static void main(String[] args) {
-        add(1,2);
-        test02();
+        try{
+            StackTest.test1();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            System.out.println("num:" + num);
+        }
     }
-    public static void add(int a,int b){
-        int result = a + b;
+    public static void test1(){
+        num ++;
+        test1();
     }
-    public static void test02(){
-        test02();
-    }
-    public static void test03(){}
 }
