@@ -5,7 +5,7 @@
          version="3.1">
     <servlet>
         <servlet-name>gupaomvc</servlet-name>
-        <servlet-class>com.panda.spring.framework.servlet.v3.GPDispatcherServlet</servlet-class>
+        <servlet-class>com.panda.spring2.framework.webmvc.GPDispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:application.properties</param-value>
