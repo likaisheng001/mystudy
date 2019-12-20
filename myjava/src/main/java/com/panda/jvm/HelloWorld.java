@@ -1,7 +1,4 @@
-package com.panda.jvm;/**
- * Created by My on 2019-12-16.
- */
-
+package com.panda.jvm;
 /**
  * @Author: Likaisheng
  * @Description:
@@ -10,6 +7,13 @@ package com.panda.jvm;/**
  */
 public class HelloWorld {
     public static void main(String[] args) {
-        System.out.println("Hello World!!");
+        for(int i = 0; i < 100; i++){
+            try {
+                Thread.sleep(1000);
+                System.out.println("Hello World!!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
