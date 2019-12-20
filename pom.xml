@@ -453,6 +453,7 @@
         <module>myredis</module>
         <module>myjava</module>
         <module>myspring</module>
-        <module>gupaoedu</module>
+        <module>gupaoedu-springtx</module>
+        <module>gupaoedu-springtx</module>
     </modules>
 </project>
