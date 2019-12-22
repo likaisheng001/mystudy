@@ -21,6 +21,7 @@ public class HeapTest {
         try{
             while(true){
                 Thread.sleep(500);
+                System.out.println("添加一个对象！");
                 objList.add(new Object());
             }
         }catch (Exception e){
