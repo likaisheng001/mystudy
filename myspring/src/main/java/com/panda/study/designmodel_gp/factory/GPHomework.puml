@@ -1,0 +1,40 @@
+@startuml
+note as n1
+跨境支付：
+比如Alipay,既可以国内使用，又可以国外使用
+end note
+
+interface Payment
+Payment : void pay()
+
+interface ExternalPayment
+ExternalPayment : void externalPay()
+interface InteriorPayment
+InteriorPayment : void interiorPay()
+
+Payment <|-- ExternalPayment
+Payment <|-- InteriorPayment
+
+class Alipay
+class WeiXinPay
+class UnionPay
+InteriorPayment <|.. Alipay
+ExternalPayment <|.. Alipay
+InteriorPayment <|.. WeiXinPay
+InteriorPayment <|.. UnionPay
+
+Abstract PayFactory
+PayFactory : Payment createPay(String payType)
+
+class ExternalPayFactory
+class InteriorPayFactory
+
+PayFactory <|-- ExternalPayFactory
+PayFactory <|-- InteriorPayFactory
+
+ExternalPayFactory <.. ExternalPayment
+InteriorPayFactory <.. InteriorPayment
+
+
+
+@enduml
