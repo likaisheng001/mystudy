@@ -19,7 +19,9 @@ public class ExectorThread implements Runnable{
     public void run() {
 //        LazySimpleSingleton instance = LazySimpleSingleton.getInstance();
 //        System.out.println(Thread.currentThread().getName() + ":" + instance);
-        ThreadLocalSingleton instance = ThreadLocalSingleton.getInstance();
-        System.out.println(Thread.currentThread().getName() + ":" + instance);
+
+//        ThreadLocalSingleton instance = ThreadLocalSingleton.getInstance();
+//        System.out.println(Thread.currentThread().getName() + ":" + instance);
+
     }
 }
