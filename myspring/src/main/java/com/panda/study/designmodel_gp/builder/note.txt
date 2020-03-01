@@ -1,0 +1,11 @@
+建造者模式：复杂对象的构建。将复杂对象的构建与它的表示分离。
+            用户只需要通过指定的建造类型就可以获取对象，不必关系建造过程和细节。
+            把复杂对象的创建和使用分离。
+
+场景应用场景:
+1.Sql创建。sql的创建就是一个复杂过程。
+2.StringBuilder
+3.CacheBuilder(mysql)
+4.SqlSessionFactoryBuilder
+5.BeanDefinitionBuilder(Spring)
+6.动态配置 Netty
