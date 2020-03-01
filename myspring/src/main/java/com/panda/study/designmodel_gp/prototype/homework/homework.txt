@@ -1,0 +1,13 @@
+1.用JSON方式实现一个原型模式的深克隆，并画出UML图。
+
+2.请列举1-3个需要用到建造者模式的业务场景。
+
+Java对象转成JSON的两种开源实现方式：
+1.Google的gson
+  Gson 是 Google 提供的用来在 Java 对象和 JSON 数据之间进行映射的 Java 类库。可以将JSON字符串和Java对象互转。
+2.阿里巴巴的fastjson
+    fastjson 是一个性能很好的 Java 语言实现的 JSON 解析器和生成器，来自阿里巴巴的工程师开发。
+主要特点：
+    快速FAST (比其它任何基于Java的解析器和生成器更快，包括jackson）
+    强大（支持普通JDK类包括任意Java Bean Class、Collection、Map、Date或enum）
+    零依赖（没有依赖其它任何类库除了JDK）
