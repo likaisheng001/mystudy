@@ -18,4 +18,9 @@ public class Zhangsan implements IPerson {
     public void buyInsurance() {
         System.out.println("我要买30万的");
     }
+
+    @Override
+    public void sayHello(String girlName) {
+        System.out.println(girlName + "你好，我是张三");
+    }
 }

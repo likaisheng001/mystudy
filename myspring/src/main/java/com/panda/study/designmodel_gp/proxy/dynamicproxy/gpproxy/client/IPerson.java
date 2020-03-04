@@ -12,4 +12,7 @@ public interface IPerson {
     void findLove();
 
     void buyInsurance();
+
+    // 测试带参方法
+    void sayHello(String girlName);
 }

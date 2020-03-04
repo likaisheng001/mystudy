@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * @Author: Likaisheng
@@ -25,7 +26,7 @@ public class GPProxy {
         try {
             //1. 动态生产源码 .java文件
             String src = generateSrc(interfaces);
-            //System.out.println(src);
+            System.out.println(src);
             //2. Java文件输出到磁盘，保存为文件$Proxy0.java
             String filePath = GPProxy.class.getResource("").getPath();
             File f = new File(filePath + "$Proxy0.java");
@@ -72,14 +73,23 @@ public class GPProxy {
             StringBuilder paramValues = new StringBuilder();
             StringBuilder paramClasses = new StringBuilder();
 
+            // 带参方法的代理实现 - 拼形参
             for (int i = 0; i < params.length; i++) {
-
+                //  这些代码不是给用户看的，形参名简化处理了
+                paramNames.append(params[i].getName()).append(" ").append("a"+(i+1)).append(",");
+                paramClasses.append(params[i].getTypeName()).append(".class").append(",");
+                paramValues.append("a"+(i+1)).append(",");
+            }
+            if(paramNames.length() != 0){
+                paramNames.replace(paramNames.lastIndexOf(","),paramNames.lastIndexOf(",")+1,"");
+                paramClasses.replace(paramClasses.lastIndexOf(","),paramClasses.lastIndexOf(",")+1,"");
+                paramValues.replace(paramValues.lastIndexOf(","),paramValues.lastIndexOf(",")+1,"");
             }
 
-            sb.append("public " + m.getReturnType().getName() + " " + m.getName() + "(){" + ln);
+            sb.append("public " + m.getReturnType().getName() + " " + m.getName() + "(" + paramNames.toString()  + "){" + ln);
                 sb.append("try{" + ln);
-                    sb.append("Method m = " + interfaces[0].getName() + ".class.getMethod(\"" + m.getName() + "\",new Class[]{});" + ln);
-                    sb.append("this.h.invoke(this, m, new Object[]{});" + ln);
+                    sb.append("Method m = " + interfaces[0].getName() + ".class.getMethod(\"" + m.getName() + "\",new Class[]{" + paramClasses.toString() + "});" + ln);
+                    sb.append("this.h.invoke(this, m, new Object[]{"+ paramValues.toString() +"});" + ln);
                     sb.append("return;");
                 sb.append("}" + ln );
                 sb.append(       "    catch(Error _ex) { } " + ln );

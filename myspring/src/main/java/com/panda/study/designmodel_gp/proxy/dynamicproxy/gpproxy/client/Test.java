@@ -16,5 +16,7 @@ public class Test {
         GpMeipo gpMeipo = new GpMeipo();
         IPerson zhangsan = gpMeipo.getInstance(new Zhangsan());
         zhangsan.findLove();
+
+        zhangsan.sayHello("梦梦");
     }
 }
