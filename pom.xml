@@ -450,8 +450,9 @@
     </distributionManagement>
     -->
     <modules>
-        <module>myredis</module>
-        <module>myjava</module>
-        <module>myspring</module>
+        <module>p01-spring</module>
+        <module>p02-redis</module>
+        <module>p03-java</module>
+
     </modules>
 </project>
