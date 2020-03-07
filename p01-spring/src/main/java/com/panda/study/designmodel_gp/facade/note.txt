@@ -1,8 +1,31 @@
 门面模式：
     门面模式又叫外观模式，提供一个统一的接口，用来访问子系统中的一群接口。
+    总结：门面模式，自己不处理，而是通过调用来处理。
 
 
 生活场景：
     前台接待员
     包工头
+
+源码应用：
+    org.springframework.jdbc.support.JdbcUtils
+    工具类(自己不处理，而是通过调用来处理)
+    org.apache.catalina.core.ApplicationContextFacade中通过构造方法注入private final ApplicationContext context;，其中的方法：get*，均是获取context中属性
+    阿里巴巴的druid中DruidStatManagerFacade，同时也使用了饿汉式单例
+    tomcat中RequestFacade和ResponseFacade都是通过构造方法注入对象，再调用request和response的方法执行相应方法。
+
+门面模式和代理模式的区别：
+    门面模式是特殊的静态代理模式
+    门面模式    重点在封装
+    代理模式    重点在增强
+
+门面模式的缺点：
+1.当增加子系统和扩展子系统行为时，可能容易带来未知风险
+2.不符合开闭原则
+3.某些情况下可能违背单一职责原则
+
+
+
+
+
 

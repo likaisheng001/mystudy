@@ -10,7 +10,6 @@ package com.panda.study.designmodel_gp.facade.points;/**
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println("你好");
         FacadeService facadeService = new FacadeService();
         GiftInfo giftInfo = new GiftInfo("Spring 5编程思想");
         facadeService.exchange(giftInfo);
