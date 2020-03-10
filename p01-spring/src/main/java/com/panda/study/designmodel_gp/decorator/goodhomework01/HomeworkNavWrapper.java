@@ -1,4 +1,4 @@
-package com.panda.study.designmodel_gp.decorator.goodhomework;/**
+package com.panda.study.designmodel_gp.decorator.goodhomework01;/**
  * Created by My on 2020-03-07.
  */
 

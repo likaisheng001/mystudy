@@ -1,0 +1,11 @@
+日志框架发展历程：
+第一阶段--诞生：
+    Log4j                        Java1.4之前,Apache
+    J.U.L(Jdk-logging)           2002Java1.4发布,Sun
+第二阶段--兼容(通过接口类,定义规范):
+    J.C.L(Commons-logging)       Apache,解决日志框架混乱
+    Slf4j                        2006,Log4j作者Ceki Gulcu离开Apache后,对J.C.L的完善(标准接口)
+第三阶段--继续发展：
+    Logback                      Ceki Gulcu为Slf4j开发的默认实现类
+    Log4j2                       2012年,Apache重写Log4j
+
