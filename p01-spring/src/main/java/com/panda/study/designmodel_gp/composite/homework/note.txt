@@ -1,0 +1,8 @@
+请用组合模式实现一个无限级扩展的树（提示，可以引入xpath）。
+
+
+
+扩展：
+    XPath即为XML路径语言（XML Path Language）。
+    XPath 是一门在 XML 文档中查找信息的语言。
+    XPath 可用来在 XML 文档中对元素和属性进行遍历。
