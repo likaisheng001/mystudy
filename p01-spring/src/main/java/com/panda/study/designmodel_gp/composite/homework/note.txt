@@ -6,3 +6,14 @@
     XPath即为XML路径语言（XML Path Language）。
     XPath 是一门在 XML 文档中查找信息的语言。
     XPath 可用来在 XML 文档中对元素和属性进行遍历。
+    总结：xpath的作用是直接定位和查找元素
+
+--------------xpath示例----------------
+Table
+id      parentId    xpath       level
+1          1         /1           1
+2          1         /1/2         2
+3          2         /1/2/3       3
+
+select * from table where xpath like '/1%' order by level asc;
+--------------xpath示例----------------
