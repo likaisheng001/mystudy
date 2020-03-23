@@ -13,5 +13,9 @@
     org.springframework.expression.ExpressionParser
     java.util.regex.Pattern
 
+使用解释器模式实现一个支持+-*/()的计算器
+一级运算符：* /
+二级运算符：+ -
+手动提高优先级：用括号()
 
 
