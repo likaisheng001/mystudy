@@ -114,6 +114,56 @@ public class PDispatcherServlet extends HttpServlet{
         Class<?>[] paramTypes = handlerMapping.getParamTypes();
         Object[] paramValues = new Object[paramTypes.length];
 
+        /*
+        //获取形参列表 - 老师版
+        Class<?> [] parameterTypes = method.getParameterTypes();
+        Object [] paramValues = new Object[parameterTypes.length];
+
+        for (int i = 0; i < parameterTypes.length; i++) {
+            Class paramterType = parameterTypes[i];
+            if(paramterType == HttpServletRequest.class){
+                paramValues[i] = req;
+            }else if(paramterType == HttpServletResponse.class){
+                paramValues[i] = resp;
+            }else if(paramterType == String.class){
+                //通过运行时的状态去拿到你
+                Annotation[] [] pa = method.getParameterAnnotations();
+                for (int j = 0; j < pa.length ; j ++) {
+                    for(Annotation a : pa[i]){
+                        if(a instanceof GPRequestParam){
+                            String paramName = ((GPRequestParam) a).value();
+                            if(!"".equals(paramName.trim())){
+                                // TODO 此处在干嘛？
+                                String value = Arrays.toString(params.get(paramName))
+                                        .replaceAll("\\[|\\]","")
+                                        .replaceAll("\\s+",",");
+                                paramValues[i] = value;
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
+
+        /*
+        我的版本
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        Object[] paramValues = new Object[parameterTypes.length];
+        for (int i = 0; i < parameterTypes.length; i++) {
+            Class clazz = parameterTypes[i];
+            // 暂时只支持处理这三种情况的参数
+            if (clazz == HttpServletRequest.class){
+                paramValues[i] = req;
+            }else if (clazz == HttpServletResponse.class){
+                paramValues[i] = resp;
+                // 看参数是否自定义过
+            }else if (method.getParameters()[i].isAnnotationPresent(TRequestParam.class)){
+                TRequestParam requestParam = method.getParameters()[i].getAnnotation(TRequestParam.class);
+                String value = requestParam.value();
+                paramValues[i] = req.getParameter(value);
+            }
+        }*/
+
         Map<String,String[]> params = req.getParameterMap();
         for (Map.Entry<String,String[]> param : params.entrySet()){
             String value = Arrays.toString(param.getValue()).replaceAll("\\[|\\]","")
@@ -175,6 +225,20 @@ public class PDispatcherServlet extends HttpServlet{
 
     @Override
     public void init(ServletConfig config) throws ServletException {
+        /**
+         * 初始化步骤
+         * 1. 加载配置文件
+         * 2. 扫描相关的类
+         * ------IoC部分-------
+         * 3. 初始化IoC容器
+         * 在DI之前加入AOP功能,现有AOP才有DI.
+         * ------DI部分--------
+         * 4. 依赖注入
+         * ------MVC部分-------
+         * 5. 初始化HandlerMapping
+         * 初始化完成
+         */
+
         //1. 加载配置文件
         doLoadConfig(config.getInitParameter(SERVLET_INIT_PARAM_NAME));
         //2. 扫描相关的类
@@ -226,12 +290,11 @@ public class PDispatcherServlet extends HttpServlet{
                 PAutowired autowired = field.getAnnotation(PAutowired.class);
                 String beanName = autowired.value().trim();
                 if ("".equals(beanName)){
-                    // FIXME 此处确定是首字母小写的格式吗？ - 首字母小写
+                    // field.getType().getName() 获取属性类型的全类名
                     beanName = field.getType().getName();
                 }
                 field.setAccessible(true);
                 try {
-                    // TODO 反射，动态给字段赋值是这样写的吗？
                     field.set(entry.getValue(),ioc.get(beanName));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -264,7 +327,7 @@ public class PDispatcherServlet extends HttpServlet{
                         if (ioc.containsKey(i.getName())){
                             throw new Exception("The " + i.getName() + " is exists!");
                         }
-                        // TODO 此处需注意i.getName() 是否首字母小写
+                        // TODO 此处为何不跟Controler统一，都适用类名首字母小写呢？
                         ioc.put(i.getName(),instance);
                     }
                 }else{
@@ -283,9 +346,7 @@ public class PDispatcherServlet extends HttpServlet{
             if (file.isDirectory()){
                 doScanner(scanPackage+"."+file.getName());
             }else {
-                if (!file.getName().endsWith(".class")){
-                    continue;
-                }
+                if (!file.getName().endsWith(".class")){continue;}
                 //保存类的全限定名
                 String className = (scanPackage + "." + file.getName().replace(".class",""));
                 classNames.add(className);
