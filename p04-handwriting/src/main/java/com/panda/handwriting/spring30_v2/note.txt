@@ -1,0 +1,91 @@
+----------------------IOC、DI部分-----------------------------
+IOC中3个最重要的类：
+BeanDefinition
+BeanWrapper
+ApplicationContext
+
+ApplicationContext  简单的理解为它就是工厂类
+--getBean()          从IoC容器中去获取一个实例的方法
+
+Spring中的Bean默认是单例，而且是延时加载(Lazy)的。
+DI是在初始化以后发生的。
+猜想：Spring中发生DI由getBean()方法来触发。
+    1.调用getBean()创建对象
+    2.立即就会发生DI
+
+Spring启动的第一步就是调用Servlet的init()方法。
+猜想：在调用Servlet的init()方法时，就要初始化ApplicationContext。
+
+Spring启动步骤
+1.调用Servlet init()方法
+    创建ApplicationContext、BeanDefinitionReader
+2.读取配置文件(properties、xml、yml)
+3.扫描相关的类 BeanDefinition
+4.初始化IOC容器，并且实例化对象 BeanWrapper(包装器模式/装饰器模式)
+5.完成DI注入
+
+----------------------IOC、DI部分-----------------------------
+------------------------MVC部分-------------------------------
+MVC九大组件：
+1.  MultipartResovler           多文件上传组件
+2.  LocaleResolver              本地语言环境
+3.  ThemeResolver               主题模板处理器
+4.  HandlerMapping              保持Url映射关系
+5.  HandlerAdapter              动态参数适配器
+6.  HandlerExceptionResolver    异常拦截器
+7.  RequestToViewNameTranslator 视图提取器,从request中获取viewName
+8.  ViewResolvers               视图转换器,模板引擎
+9.  FlashMapManager             参数缓存器
+
+注：三大重要组件HandlerMapping、HandlerAdapter、ViewResolvers。
+
+DispatcherServelt
+    init():
+        new ApplicationContext();     // IoC、DI
+        initStrategies(applicationContext); // MVC
+
+------------------------MVC部分-------------------------------
+------------------------AOP部分-------------------------------
+AOP     底层技术用动态代理实现，增强、解耦。
+        织入一些新的代码，生成一个新的类。
+            要么跟目标类实现一个相同的接口，
+            要么就直接继承目标类，覆盖目标类的方法
+        真正去调用代码逻辑的时候，直接运行生成的Proxy类的代码。
+
+        面向切面编程。侧面，供给侧改革、需求侧改革。
+
+        日志监听的切面：
+            之前：记录方法开始调用时间，输出日志
+            之后：记录方法结束调用时间，输出日志
+            抛异常的时候：统一到某一个页面展示
+
+            结束调用时间 - 开始调用时间 = 方法执行所花的时间，即方法性能。
+
+        public void handler(){
+            try{
+                ----------before------------
+                long s = System.currentTime();
+                ----------------------------
+                // xxx,真正跟业务相关的代码
+                ----------after-------------
+                long e = System.currentTime();
+                log.debug((e - s) + ".ms");
+                ----------------------------
+            }catch(Exception e){
+                ----------afterThrows-------
+                resp.getWriter().println("500");
+                ----------------------------
+            }
+        }
+
+        Advice 通知
+            一个方法对应多个通知
+            Map<Method,List<Advice>> / Map<Method,Map<String,Advice>> before after throw
+            切面的织入，是由Spring生成的Proxy类来完成的(JDK、CGLib)
+
+与AOP相关的类
+    AopConfig
+    AdvisedSupport - 解析AopConfig
+    Advice
+    JdkDynamicAopProcy
+------------------------AOP部分-------------------------------
