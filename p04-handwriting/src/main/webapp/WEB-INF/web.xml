@@ -5,10 +5,10 @@
          version="3.1">
     <servlet>
         <servlet-name>pmvc</servlet-name>
-        <servlet-class>com.panda.handwriting.spring300.framework.servlet.PDispatcherServlet</servlet-class>
+        <servlet-class>com.panda.handwriting.spring30_v2.framework.webmvc.servlet.PDispatcheServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring300/application.properties</param-value>
+            <param-value>classpath:spring30_v2/application.properties</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

@@ -26,7 +26,7 @@ public class PropertiesTest {
     // TODO 有空好好学习下HashTable和Properteis
     @Test
     public void testLoadProperties(){
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream("spring300/application.properties");
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("spring300_v1/application.properties");
         try {
             properties.load(is);
         } catch (IOException e) {
