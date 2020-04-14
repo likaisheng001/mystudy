@@ -13,7 +13,9 @@ import java.util.regex.Pattern;
 
 /**
  * @Author: Likaisheng
- * @Description: 解析AOP配置的工具类
+ * @Description: 解析AOP配置的工具类。
+ *               这个类的命名有些奇怪，这个类明明是解析AOP配置的工具类，可是却叫PAdvicedSupport，为什么这样命名呢？
+ *               我猜，是因为这个工具类解析出来的配置都是给Advice用的。所谓的AOP配置，也就是通知的配置。
  * @Date: Created in 15:34:12 2020-04-13
  * @Modified By:
  */

@@ -127,7 +127,8 @@ public class PApplicationContext {
                 //=================== AOP开始 ===========================
                 //如果满足条件，就直接返回Proxy对象
                 //1. 加载AOP的配置文件
-                PAdvicedSupport config = instantionAopConfig(beanDefinition);
+                //FIXME AopConfig可以外提，避免每次创建
+                PAdvicedSupport config = instantionAopConfig();
                 config.setTargetClass(clazz);
                 config.setTarget(instance);
                 //判断规则，要不要生成代理类，如果要就覆盖原生对象
@@ -145,7 +146,7 @@ public class PApplicationContext {
         return instance;
     }
 
-    private PAdvicedSupport instantionAopConfig(PBeanDefinition beanDefinition) {
+    private PAdvicedSupport instantionAopConfig() {
         PAopConfig config = new PAopConfig();
         config.setPointCut(this.reader.getConfig().getProperty("pointCut"));
         config.setAspectClass(this.reader.getConfig().getProperty("aspectClass"));
