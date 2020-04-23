@@ -1,0 +1,26 @@
+DI从哪里开始？
+getBean()   为什么？
+    因为Spring默认是懒加载；
+
+实例化有两种情况？
+    目标类配置了AOP，实例化的对象代理类
+    目标类没有配置AOP，实例化原生对象。
+
+依赖注入执行细节：
+    寻找入口->开始实例化->选择实例化策略->执行实例化->准备依赖注入->解析注入规则->注入赋值
+
+由这个方法发起实例化对象的动作
+instantiateBean()
+由这个方法发起依赖注入的动作
+populateBean()
+    根据beanName、beanDefinition、beanWrapper找到需要赋值的属性
+    把需要赋值的属性封装成一个集合PropertyValues,集合的元素PropertyValue
+    PropertyValue需要赋值的bean,赋值需要调用的方法,要赋什么值
+applyPropertyValues()   循环PropertyValue,挨个调用BeanWrapper的setValue()方法,用反射调用setter方法完成赋值
+
+beanDefinitionMap           用来存BeanDefinition的Map   存储配置信息
+factoryBeanObjectCache      用来存原生Bean的Map,存储反射创建的实际的对象
+factoryBeanInstanceCache    用来存BeanWrapper的Map,存储原生Bean的包装类
+
+全部解析到一个容器里面缓存了  - 循环依赖
+

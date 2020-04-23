@@ -1,0 +1,35 @@
+IoC容器初始化三部曲：
+1.定位    定位配置文件和扫描相关的注解
+2.加载    将配置信息载入到内存
+3.注册    根据载入的信息，将对象初始化到IoC容器中。
+         此时还未创建Bean。Spring中的Bean是懒汉式的，只要在依赖注入时，才会创建Bean。
+
+基于Xml的定位、加载和注册：
+定位：寻找入口->获取配置文件路径->开始启动->创建容器->载入配置路径->分片路径处理策略->解析配置文件路径->开始读取配置文件->准备文档对象
+加载：分配解析策略->将配置载入内存->载入<bean>元素->载入<property>->载入<property>子元素->载入<list>元素
+注册: 分配注册策略->向容器注册
+
+------------------------扩展-------------------------
+什么是IoC?
+    Inversion of Control控制反转：所谓控制反转，就是把原先我们代码里面需要实现的对象的创建、依赖的代码，反转给容器来帮忙实现。
+什么是DI?
+    Dependency Injection依赖注入：就是指对象是被动接受依赖类而不是自己主动去找，换句话说就是指对象不是从容器中查找它依赖的类，
+    而是在容器实例化对象的时候主动将它依赖的类注入给它。
+对象和对象的关系怎么表示？
+    xml/yml/properties  注解
+    描述对象关系的文件存放在classpath/network/filesystem/servletContext/annotation
+    注解，实质是一种配置，一种动态配置。
+如何统一配置文件的标准？
+    BeanDefinition
+
+ClassPathXmlApplicationContext和DefaultListableBeanFactory的关系？
+DefaultListableBeanFactory,ClassPathXmlApplicationContext都是beanFactory,
+它们是组合关系,ClassPathXmlApplicationContext静态代理DefaultListableBeanFactory
+
+ApplicationContext  - 策略模式
+    ClassPathXmlApplicationContext
+    AnnotationConfigApplication
+    WebApplicationContext
+BeanDefinition      - 策略模式
+    XmlBeanDefinition
+BeanDefinitionReader
