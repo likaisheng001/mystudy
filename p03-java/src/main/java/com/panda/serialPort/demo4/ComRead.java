@@ -1,8 +1,11 @@
+/*
 package com.panda.serialPort.demo4;
 
+*/
 /**
  * Created by My on 2019/10/17.
- */
+ *//*
+
 
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
@@ -13,10 +16,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 
+*/
 /**
  *
  * @author Administrator
- */
+ *//*
+
 public class ComRead implements Runnable{
     static CommPortIdentifier portId;
     static Enumeration portList;//枚举类
@@ -36,7 +41,9 @@ public class ComRead implements Runnable{
                         serialPort=(SerialPort)portId.open("Main",2000);
                     }catch(PortInUseException e){}
                     try {
-                        inputStream = serialPort.getInputStream();/*获取端口的输入流对象*/
+                        inputStream = serialPort.getInputStream();*/
+/*获取端口的输入流对象*//*
+
                     } catch (IOException e) {}
                 }// end if
             }// end if
@@ -74,4 +81,4 @@ public class ComRead implements Runnable{
         } catch (InterruptedException e) { }
         start();
     }
-}
+}*/

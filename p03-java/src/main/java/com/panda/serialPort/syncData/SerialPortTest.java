@@ -1,14 +1,17 @@
+/*
 package com.panda.serialPort.syncData;
 
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
+*/
 /**
  * @Author: Likaisheng
  * @Description: 已经实现电脑和串口连通，并进行正常读取。 但读取时，存在中文乱码问题，未解决
  * @Date: Created in 15:38 2019/10/17
  * @Modified By:
- */
+ *//*
+
 public class SerialPortTest {
     public static void main(String[] args) throws UnsupportedEncodingException, InterruptedException {
         //此处可以做两个线程池，来保存输入流或输出流
@@ -83,3 +86,4 @@ enum WeighBridgeCommandEnum{
     }
 }
 
+*/

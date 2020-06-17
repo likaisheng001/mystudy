@@ -1,17 +1,22 @@
+/*
 package com.panda.serialPort.glodDragon;
+*/
 /**
  * Created by My on 2019-10-26.
- */
+ *//*
+
 
 import gnu.io.SerialPort;
 import org.junit.Test;
 
+*/
 /**
  * @Author: Likaisheng
  * @Description:
  * @Date: Created in 12:27:11 2019-10-26
  * @Modified By:
- */
+ *//*
+
 public class RS232SerialPortTest {
 
     //校验测试通过
@@ -57,3 +62,4 @@ public class RS232SerialPortTest {
         }
     }
 }
+*/

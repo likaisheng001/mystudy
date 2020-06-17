@@ -1,3 +1,4 @@
+/*
 package com.panda.serialPort.demo2;
 
 
@@ -7,10 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+*/
 /**
  * 串口数据读取类,用于windows的串口数据读取
  *
- */
+ *//*
+
 public class SerialReader extends Observable implements Runnable, SerialPortEventListener {
     static CommPortIdentifier portId;
     int delayRead = 200;
@@ -28,12 +31,14 @@ public class SerialReader extends Observable implements Runnable, SerialPortEven
     public static final String PARAMS_STOPBITS = "stop bits"; // 停止位
     public static final String PARAMS_PARITY = "parity"; // 奇偶校验
     public static final String PARAMS_RATE = "rate"; // 波特率
-    /**
+    */
+/**
      * 初始化端口操作的参数.
      *
      *
      * @see
-     */
+     *//*
+
     public SerialReader(HashMap params) {
         serialParams = params;
         init();
@@ -73,26 +78,30 @@ public class SerialReader extends Observable implements Runnable, SerialPortEven
         Thread readThread = new Thread(this);
         readThread.start();
     }
-    /**
+    */
+/**
      * Method declaration
      *
      *
      * @see
-     */
+     *//*
+
     public void run() {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
         }
     }
-    /**
+    */
+/**
      * Method declaration
      *
      *
      * @param event
      *
      * @see
-     */
+     *//*
+
     public void serialEvent(SerialPortEvent event) {
         try {
             // 等待1秒钟让串口把数据全部接收后在处理
@@ -159,10 +168,12 @@ public class SerialReader extends Observable implements Runnable, SerialPortEven
                 return "unknown type";
         }
     }
-    /**
+    */
+/**
      * @return A HashSet containing the CommPortIdentifier for all serial ports that are not
      *         currently being used.
-     */
+     *//*
+
     public static HashSet<CommPortIdentifier> getAvailableSerialPorts() {
         HashSet<CommPortIdentifier> h = new HashSet<CommPortIdentifier>();
         Enumeration thePorts = CommPortIdentifier.getPortIdentifiers();
@@ -183,4 +194,4 @@ public class SerialReader extends Observable implements Runnable, SerialPortEven
         }
         return h;
     }
-}
+}*/

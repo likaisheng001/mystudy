@@ -1,15 +1,20 @@
-package com.panda.serialPort.glodDragon;/**
+/*
+package com.panda.serialPort.glodDragon;*/
+/**
  * Created by My on 2019-10-27.
- */
+ *//*
+
 
 import gnu.io.SerialPort;
 
+*/
 /**
  * @Author: Likaisheng
  * @Description:
  * @Date: Created in 11:55:53 2019-10-27
  * @Modified By:
- */
+ *//*
+
 public class WeighBridgeClient {
     public Float getWeighBridgeData(){
         RS232SerialPort rs232SerialPort = new RS232SerialPort();
@@ -24,3 +29,4 @@ public class WeighBridgeClient {
         return result;
     }
 }
+*/

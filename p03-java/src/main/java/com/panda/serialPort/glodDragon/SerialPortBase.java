@@ -1,3 +1,4 @@
+/*
 package com.panda.serialPort.glodDragon;
 
 import gnu.io.CommPortIdentifier;
@@ -12,6 +13,7 @@ import java.util.Enumeration;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+*/
 /**
 /**
  * @Author: Likaisheng
@@ -19,7 +21,8 @@ import java.util.concurrent.locks.ReentrantLock;
  *               具体的通信任务交给具体的通信类RS232SerialPortComm
  * @Date: Created in 09:16:56 2019-10-26
  * @Modified By:
- */
+ *//*
+
 public class SerialPortBase {
     private CommPortIdentifier commPort;
     private SerialPort serialPort;
@@ -84,13 +87,15 @@ public class SerialPortBase {
         }
     }
 
-    /**
+    */
+/**
      * 配置串口。只有在打开串口后，才能配置串口
      * @param baudRate 波特率
      * @param dataBits 数据位
      * @param stopBits 停止位
      * @param parity 校验位
-     */
+     *//*
+
     public void configSerialPortParams(int baudRate,int dataBits,int stopBits,int parity){
         try {
             serialPort.setSerialPortParams(baudRate,
@@ -136,3 +141,4 @@ public class SerialPortBase {
         return timeout;
     }
 }
+*/

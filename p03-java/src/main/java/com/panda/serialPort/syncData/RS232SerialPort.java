@@ -1,3 +1,4 @@
+/*
 package com.panda.serialPort.syncData;
 
 import gnu.io.*;
@@ -8,12 +9,14 @@ import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.TooManyListenersException;
 
+*/
 /**
  * @Author: Likaisheng
  * @Description: 使用RXTX实现java串口通信
  * @Date: Created in 14:29 2019/10/17
  * @Modified By:
- */
+ *//*
+
 public class RS232SerialPort implements Runnable, SerialPortEventListener {
     private static LinkedList<Byte> RECEIVEBYTES = new LinkedList<Byte>();
 
@@ -98,12 +101,14 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
         }
     }
 
-    /**
+    */
+/**
      * 开始监听从端口中接收的数据
      *
      * @param time 监听程序的存活时间，单位为秒，0 则是一直监听
      * @Return void
-     */
+     *//*
+
     public void startRead(int time) {
         checkPort();
 
@@ -141,17 +146,37 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
     @Override
     public void serialEvent(SerialPortEvent arg0) {
         switch (arg0.getEventType()) {
-            case SerialPortEvent.BI:/*Break interrupt,通讯中断*/
-            case SerialPortEvent.OE:/*Overrun error，溢位错误*/
-            case SerialPortEvent.FE:/*Framing error，传帧错误*/
-            case SerialPortEvent.PE:/*Parity error，校验错误*/
-            case SerialPortEvent.CD:/*Carrier detect，载波检测*/
-            case SerialPortEvent.CTS:/*Clear to send，清除发送*/
-            case SerialPortEvent.DSR:/*Data set ready，数据设备就绪*/
-            case SerialPortEvent.RI:/*Ring indicator，响铃指示*/
-            case SerialPortEvent.OUTPUT_BUFFER_EMPTY:/*Output buffer is empty，输出缓冲区清空*/
+            case SerialPortEvent.BI:*/
+/*Break interrupt,通讯中断*//*
+
+            case SerialPortEvent.OE:*/
+/*Overrun error，溢位错误*//*
+
+            case SerialPortEvent.FE:*/
+/*Framing error，传帧错误*//*
+
+            case SerialPortEvent.PE:*/
+/*Parity error，校验错误*//*
+
+            case SerialPortEvent.CD:*/
+/*Carrier detect，载波检测*//*
+
+            case SerialPortEvent.CTS:*/
+/*Clear to send，清除发送*//*
+
+            case SerialPortEvent.DSR:*/
+/*Data set ready，数据设备就绪*//*
+
+            case SerialPortEvent.RI:*/
+/*Ring indicator，响铃指示*//*
+
+            case SerialPortEvent.OUTPUT_BUFFER_EMPTY:*/
+/*Output buffer is empty，输出缓冲区清空*//*
+
                 break;
-            case SerialPortEvent.DATA_AVAILABLE:/*Data available at the serial port，端口有可用数据。读到缓冲数组，输出到终端*/
+            case SerialPortEvent.DATA_AVAILABLE:*/
+/*Data available at the serial port，端口有可用数据。读到缓冲数组，输出到终端*//*
+
 
                 byte[] readBuffer = new byte[1024];
                 String s2 = "";
@@ -180,12 +205,14 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
         }
     }
 
-    /**
+    */
+/**
      * 将十六进制字符串转换成byte数组
      *
      * @param str
      * @return
-     */
+     *//*
+
     public static byte[] hexStringToBytes(String str) {
         //此处并未校验传入参数是否合法
         //此处保证传入的字符串为偶数，方便后续处理
@@ -215,11 +242,13 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
         return RECEIVEBYTES;
     }
 
-    /**
+    */
+/**
      * 工具方法，将byte[]转换成十六进制返回，只支持100字节以内的byte数组
      *
      * @param bytes
-     */
+     *//*
+
     public static String stringToHex(byte[] bytes) {
         StringBuilder builder = new StringBuilder(100);
         for (int i = 0; i < bytes.length; i++) {
@@ -231,4 +260,4 @@ public class RS232SerialPort implements Runnable, SerialPortEventListener {
         }
         return builder.toString();
     }
-}
+}*/

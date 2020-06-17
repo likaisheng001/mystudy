@@ -1,18 +1,23 @@
-package com.panda.serialPort.glodDragon;/**
+/*
+package com.panda.serialPort.glodDragon;*/
+/**
  * Created by My on 2019-10-26.
- */
+ *//*
+
 
 import gnu.io.SerialPort;
 import org.junit.Test;
 
 import java.io.IOException;
 
+*/
 /**
  * @Author: Likaisheng
  * @Description:测试SerialPortBase类和SerialPortComm类
  * @Date: Created in 10:33:29 2019-10-26
  * @Modified By:
- */
+ *//*
+
 public class SerialPortTest {
     public static void main(String[] args) {
         SerialPortBase serialPortBase = new SerialPortBase("测试");
@@ -59,9 +64,12 @@ public class SerialPortTest {
         }
         System.out.println("异或后的结果为:"+b); // 22  0001 0110
         //异或高位小于等于9  1+30 = 31； 异或低位小于等于9  6+30 = 36
-        /*String[] arr = str.split(" ");
+        */
+/*String[] arr = str.split(" ");
         for (int i = 0; i < arr.length; i++) {
             arr2 = WeighBridgeUtil.hexStringToBytes(arr[i]);
-        }*/
+        }*//*
+
     }
 }
+*/

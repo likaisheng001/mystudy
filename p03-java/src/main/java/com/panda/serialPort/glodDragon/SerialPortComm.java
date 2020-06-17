@@ -1,6 +1,9 @@
-package com.panda.serialPort.glodDragon;/**
+/*
+package com.panda.serialPort.glodDragon;*/
+/**
  * Created by My on 2019-10-26.
- */
+ *//*
+
 
 import gnu.io.SerialPort;
 
@@ -13,12 +16,14 @@ import java.util.concurrent.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+*/
 /**
  * @Author: Likaisheng
  * @Description:该类负责串口通信，只负责最基础的数据读写，不添加任何额外的功能
  * @Date: Created in 09:49:59 2019-10-26
  * @Modified By:
- */
+ *//*
+
 public class SerialPortComm {
 //    private static ThreadPoolExecutor threadPool = new ThreadPoolExecutor(2,3,10, TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>());
     private static ScheduledExecutorService threadPool = Executors.newSingleThreadScheduledExecutor();
@@ -50,12 +55,14 @@ public class SerialPortComm {
         return outputStream;
     }
 
-    /**
+    */
+/**
      * 根据起始位，读取一条数据
      * @param timeout 超时时间
      * @return
      * @throws IOException
-     */
+     *//*
+
     public byte[] read(int timeout) throws IOException {
         byte[] buf = new byte[1024];
         int len = 0;
@@ -117,11 +124,13 @@ public class SerialPortComm {
                 e.printStackTrace();
             }
         }
-        /**
+        */
+/**
          * 异步读，会有丢失数据的现象
          * @return
          * @throws IOException
-         */
+         *//*
+
         public void asyRead() throws IOException {
             byte[] buf = new byte[1024];
             int len = 0;
@@ -145,3 +154,4 @@ public class SerialPortComm {
         }
     }
 }
+*/

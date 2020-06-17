@@ -1,15 +1,18 @@
+/*
 package com.panda.serialPort.demo2;
 
 import gnu.io.SerialPort;
 
 import java.util.HashMap;
 
+*/
 /**
  * @Author: Likaisheng
  * @Description: 使用CXTX实现java串口通信  -- 存在中文乱码问题
  * @Date: Created in 16:36 2019/10/17
  * @Modified By:
- */
+ *//*
+
 public class SerialPortDemo {
     public static void main(String[] args) {
         HashMap<String, Comparable> params = new HashMap<String, Comparable>();
@@ -27,3 +30,4 @@ public class SerialPortDemo {
         sr.addObserver(bob);
     }
 }
+*/
